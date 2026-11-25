@@ -19,32 +19,35 @@
   /* ===== Sunny Tracker — premium minimal, deep-teal accent ===== */
   /* Layout: single-column, sticky wordmark header, scrolling screen, fixed tab bar. */
   :root{
-    --bg:#f6f7f6; --raised:#ffffff; --sunk:#edf0ef;
-    --ink:#16201d; --muted:#5f6b67; --faint:#9aa39f; --line:#e4e8e6;
-    --accent:#0e7c6b; --accent-press:#0b6558; --accent-soft:#dcefe9; --accent-ink:#ffffff;
-    --good:#0e7c6b; --warn:#a9771a; --bad:#b0463c; --gold:#bd922f;
+    --bg:#f3f6f5; --raised:#ffffff; --sunk:#e9eeec;
+    --ink:#13201d; --muted:#5a6a65; --faint:#95a39e; --line:#e2e8e5;
+    --accent:#10a98f; --accent-press:#0c8d77; --accent-soft:#d6f2ec; --accent-ink:#ffffff;
+    --violet:#6a5cf0; --violet-soft:#ece9fe; --gold:#bd922f; --glow:transparent;
+    --good:#10a98f; --warn:#b07d1a; --bad:#c4544a;
     --shadow-sm:0 1px 2px rgba(16,32,28,.05);
-    --shadow:0 10px 30px -16px rgba(16,32,28,.28);
+    --shadow:0 14px 34px -16px rgba(16,32,28,.28);
     --font:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
     --ease:cubic-bezier(.2,.7,.2,1);
-    --r-sm:10px; --r-md:14px; --r-lg:18px; --r-xl:24px; --r-pill:999px;
+    --r-sm:12px; --r-md:16px; --r-lg:22px; --r-xl:26px; --r-pill:999px;
   }
   @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
-    --bg:#0d1311; --raised:#151d1a; --sunk:#1c2723;
-    --ink:#eaf0ed; --muted:#9aaaa5; --faint:#687672; --line:#243029;
-    --accent:#2bb89d; --accent-press:#53c9b1; --accent-soft:#113029; --accent-ink:#06130f;
-    --good:#2bb89d; --warn:#d7a24a; --bad:#e07a6f; --gold:#d9b25a;
-    --shadow-sm:0 1px 2px rgba(0,0,0,.3);
-    --shadow:0 10px 30px -16px rgba(0,0,0,.7);
+    --bg:#0a1211; --raised:#13201d; --sunk:#1c2b28;
+    --ink:#ecf5f2; --muted:#8fa39e; --faint:#5e716c; --line:#243531;
+    --accent:#2fe3c6; --accent-press:#26c2a8; --accent-soft:#123430; --accent-ink:#052018;
+    --violet:#9d8cff; --violet-soft:#241f44; --gold:#e9c45f; --glow:rgba(47,227,198,.10);
+    --good:#2fe3c6; --warn:#e3b45a; --bad:#f07a6f;
+    --shadow-sm:0 1px 2px rgba(0,0,0,.35);
+    --shadow:0 14px 34px -16px rgba(0,0,0,.72);
     color-scheme:dark;
   }}
   :root[data-theme="dark"]{
-    --bg:#0d1311; --raised:#151d1a; --sunk:#1c2723;
-    --ink:#eaf0ed; --muted:#9aaaa5; --faint:#687672; --line:#243029;
-    --accent:#2bb89d; --accent-press:#53c9b1; --accent-soft:#113029; --accent-ink:#06130f;
-    --good:#2bb89d; --warn:#d7a24a; --bad:#e07a6f; --gold:#d9b25a;
-    --shadow-sm:0 1px 2px rgba(0,0,0,.3);
-    --shadow:0 10px 30px -16px rgba(0,0,0,.7);
+    --bg:#0a1211; --raised:#13201d; --sunk:#1c2b28;
+    --ink:#ecf5f2; --muted:#8fa39e; --faint:#5e716c; --line:#243531;
+    --accent:#2fe3c6; --accent-press:#26c2a8; --accent-soft:#123430; --accent-ink:#052018;
+    --violet:#9d8cff; --violet-soft:#241f44; --gold:#e9c45f; --glow:rgba(47,227,198,.10);
+    --good:#2fe3c6; --warn:#e3b45a; --bad:#f07a6f;
+    --shadow-sm:0 1px 2px rgba(0,0,0,.35);
+    --shadow:0 14px 34px -16px rgba(0,0,0,.72);
     color-scheme:dark;
   }
 
@@ -52,7 +55,8 @@
   [hidden]{display:none!important}
   img{max-width:100%}
   html{-webkit-text-size-adjust:100%}
-  body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font-family:var(--font);
+  body{margin:0;min-height:100%;background:radial-gradient(1100px 480px at 50% -8%, var(--glow), transparent) no-repeat, var(--bg);
+    background-attachment:fixed;color:var(--ink);font-family:var(--font);
     -webkit-font-smoothing:antialiased;overscroll-behavior-y:none;font-variant-numeric:tabular-nums}
   button{font-family:inherit;color:inherit;cursor:pointer}
   .ic{width:20px;height:20px;display:inline-block;flex:none}
@@ -223,6 +227,64 @@
   .mmodal .mt{font-size:22px;font-weight:700;letter-spacing:-.01em;margin-bottom:6px}
   .mmodal .md{font-size:14px;color:var(--muted);font-weight:500;margin-bottom:20px;line-height:1.5}
 
+  /* hero summary (ring + week strip) */
+  .hero{background:var(--raised);border:1px solid var(--line);border-radius:var(--r-lg);padding:16px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:16px}
+  .hero .top{display:flex;align-items:center;gap:14px}
+  .cring{width:62px;height:62px;position:relative;flex:none}
+  .cring .rc{position:absolute;inset:0;display:grid;place-items:center;font-size:17px;font-weight:700;color:var(--ink)}
+  .hero .htx .hh{font-size:15px;font-weight:700}
+  .hero .htx .hs{font-size:12.5px;color:var(--muted);font-weight:500;margin-top:3px}
+
+  /* week strip */
+  .weekstrip{display:flex;gap:6px}
+  .wday{flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;background:none;border:none;padding:0}
+  .wday .dl{font-size:11px;font-weight:700;color:var(--faint)}
+  .wday .dd{width:30px;height:30px;border-radius:50%;border:1.6px solid var(--line);display:grid;place-items:center;color:var(--faint);background:var(--sunk);transition:transform .16s var(--ease)}
+  .wday:active .dd{transform:scale(.9)}
+  .wday .dd svg{width:16px;height:16px}
+  .wday.ex .dd{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+  .wday.rest .dd{background:var(--accent-soft);border-color:transparent;color:var(--accent)}
+  .wday.today .dl{color:var(--accent)}
+  .wday.today .dd{border-color:var(--accent)}
+  .wday.future{opacity:.4;pointer-events:none}
+
+  /* stat pills */
+  .statpill{flex:1;min-width:0;border-radius:var(--r-lg);padding:15px;display:flex;align-items:center;gap:12px}
+  .statpill.teal{background:var(--accent);color:var(--accent-ink)}
+  .statpill.violet{background:var(--violet-soft);color:var(--ink)}
+  .sp-ic{width:40px;height:40px;border-radius:13px;display:grid;place-items:center;flex:none}
+  .statpill.teal .sp-ic{background:rgba(255,255,255,.2)}
+  .statpill.teal .sp-ic .ic{color:var(--accent-ink)}
+  .statpill.violet .sp-ic{background:var(--raised)}
+  .statpill.violet .sp-ic .ic{color:var(--violet)}
+  .sp-ic .ic{width:21px;height:21px}
+  .sp-num{font-size:27px;font-weight:700;line-height:1}
+  .sp-lbl{font-size:12px;font-weight:600;opacity:.85;margin-top:3px}
+
+  /* mini daily bars */
+  .minibars{display:flex;align-items:flex-end;gap:8px;height:104px}
+  .mb{flex:1;display:flex;flex-direction:column;justify-content:flex-end;gap:7px;align-items:center;height:100%}
+  .mb .track{width:100%;flex:1;background:var(--sunk);border-radius:8px;display:flex;align-items:flex-end;overflow:hidden}
+  .mb .fill{width:100%;background:var(--accent-soft);border-radius:8px;transition:height .6s var(--ease)}
+  .mb.on .fill{background:var(--accent)}
+  .mb .ml{font-size:10px;font-weight:700;color:var(--faint)}
+
+  /* stat row */
+  .statrow{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+  .sritem{background:var(--raised);border:1px solid var(--line);border-radius:var(--r-md);padding:12px 10px;box-shadow:var(--shadow-sm)}
+  .sritem .si{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;margin-bottom:10px}
+  .sritem .si .ic{width:17px;height:17px}
+  .sritem .sv{font-size:18px;font-weight:700;line-height:1;letter-spacing:-.02em}
+  .sritem .sk{font-size:10.5px;color:var(--muted);font-weight:600;margin-top:4px}
+  .ic-teal{background:var(--accent-soft)}.ic-teal .ic{color:var(--accent)}
+  .ic-violet{background:var(--violet-soft)}.ic-violet .ic{color:var(--violet)}
+  .ic-gold{background:color-mix(in srgb,var(--gold) 20%,transparent)}.ic-gold .ic{color:var(--gold)}
+
+  /* view chips */
+  .vchips{display:flex;gap:8px}
+  .vchip{padding:9px 16px;border-radius:var(--r-pill);border:1px solid var(--line);background:var(--raised);color:var(--muted);font-weight:600;font-size:13px}
+  .vchip.on{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+
   @media (prefers-reduced-motion: reduce){ *{animation:none!important;transition:none!important} }
 </style>
 </head>
@@ -250,21 +312,29 @@
         <span>It's been a while — back up your data?</span>
         <button id="goBackup">Back up</button>
       </div>
-      <div class="tiles">
-        <div class="tile">
-          <div class="top"><span class="ic" data-ic="flame"></span><span>Exercise streak</span></div>
-          <div class="stat num" id="exStreak">0</div><div class="unit" id="exStreakUnit">days</div>
+      <div class="hero">
+        <div class="top">
+          <div class="cring" id="consistRing"></div>
+          <div class="htx"><div class="hh">This week</div><div class="hs" id="heroSub">—</div></div>
         </div>
-        <div class="tile">
-          <div class="top"><span class="ic" data-ic="leaf"></span><span>Sugar-free</span></div>
-          <div class="stat num" id="sugarStreak">0</div><div class="unit" id="sugarStreakUnit">days</div>
-        </div>
+        <div class="weekstrip" id="weekStrip"></div>
       </div>
-      <div class="goalcard" id="goalCard"></div>
+
+      <div class="tiles">
+        <div class="statpill teal"><div class="sp-ic" data-ic="flame"></div><div><div class="sp-num num" id="exStreak">0</div><div class="sp-lbl">Day streak</div></div></div>
+        <div class="statpill violet"><div class="sp-ic" data-ic="leaf"></div><div><div class="sp-num num" id="sugarStreak">0</div><div class="sp-lbl">Sugar-free days</div></div></div>
+      </div>
+
+      <div class="card sec">
+        <div class="lbl">Activity this week</div>
+        <div class="minibars" id="weekBars"></div>
+      </div>
+
       <div class="sec">
         <div class="lbl">Today</div>
         <div class="card" id="todayCard"></div>
       </div>
+
       <button class="btn primary" id="logTodayBtn"><span class="ic" data-ic="plus"></span>Log today</button>
     </section>
 
@@ -309,18 +379,21 @@
 
     <!-- TRENDS -->
     <section class="screen" id="s-trends" hidden>
-      <div class="tiles">
-        <div class="tile"><div class="top"><span class="ic" data-ic="activity"></span><span>Active</span></div><div class="stat num" id="pctActive">0%</div><div class="unit">last 30 days</div></div>
-        <div class="tile"><div class="top"><span class="ic" data-ic="cube"></span><span>Sugar</span></div><div class="stat num" id="sugarChange" style="font-size:26px;margin-top:16px">—</div><div class="unit">vs 2 weeks ago</div></div>
-      </div>
       <div class="card sec">
-        <div class="lbl">Exercise days per week</div>
+        <div class="lbl">Training summary · last 7 weeks</div>
         <div class="chart" id="weekChart"></div>
         <div class="xlab" id="weekLabels"></div>
       </div>
-      <div class="card sec">
-        <div class="lbl">Sugar level · last 14 days <span style="color:var(--accent);text-transform:none;letter-spacing:0">(lower is better)</span></div>
-        <svg class="spark" id="sugarSpark" viewBox="0 0 300 76" preserveAspectRatio="none"></svg>
+      <div class="statrow" id="statRow"></div>
+      <div class="sec">
+        <div class="vchips" id="trendChips">
+          <button class="vchip on" data-v="sugar">Sugar</button>
+          <button class="vchip" data-v="active">Activity</button>
+        </div>
+        <div class="card sec">
+          <div class="lbl" id="trendChartLbl">Sugar level · last 14 days</div>
+          <svg class="spark" id="sugarSpark" viewBox="0 0 300 76" preserveAspectRatio="none"></svg>
+        </div>
       </div>
     </section>
 
@@ -464,7 +537,7 @@
   /* ----- state ----- */
   var defExercises=["Walk","Run","Gym","Yoga","Cycling","Sports"];
   var state, activeDate=todayKey(), calMonth=new Date(), isExample=false;
-  function freshState(){return {days:{},settings:{exercises:defExercises.slice(),reminder:{on:false,time:"20:00"},theme:"system",goals:{workoutsPerWeek:4},lastBackup:0}};}
+  function freshState(){return {days:{},settings:{exercises:defExercises.slice(),reminder:{on:false,time:"20:00"},theme:"dark",goals:{workoutsPerWeek:4},lastBackup:0}};}
   function exampleState(){
     var s=freshState(),t=new Date();
     var plan=[[0,null,1,"low"],[1,"Walk",2,"low"],[2,"Gym",1,"med"],[3,"Walk",1,"low"],[4,null,0,"high"],[5,"Yoga",2,"low"],[6,"Run",1,"low"],[7,"Walk",1,"med"],[8,"Gym",2,"low"],[9,"Walk",1,"low"],[11,"Cycling",1,"med"],[12,"Walk",2,"low"],[13,"Gym",0,"high"],[14,"Walk",1,"low"],[16,"Yoga",2,"low"],[18,"Run",1,"low"],[20,"Walk",1,"med"],[22,"Gym",2,"low"],[25,"Walk",1,"low"],[28,"Yoga",1,"low"]];
@@ -493,11 +566,8 @@
   /* ----- renders ----- */
   function renderHome(){
     document.getElementById("exampleBanner").hidden=!isExample;
-    renderGoal(); checkBackupNudge();
-    var es=exerciseStreak(),ss=sugarFreeStreak();
-    setNum("exStreak",es); setNum("sugarStreak",ss);
-    document.getElementById("exStreakUnit").textContent=es===1?"day":"days";
-    document.getElementById("sugarStreakUnit").textContent=ss===1?"day":"days";
+    checkBackupNudge(); renderHero(); renderWeekStrip(); renderMiniBars();
+    setNum("exStreak",exerciseStreak()); setNum("sugarStreak",sugarFreeStreak());
     var e=state.days[todayKey()],card=document.getElementById("todayCard");
     if(!e){ card.innerHTML='<div class="empty">'+icon("sun")+'<div>Nothing logged yet today.</div></div>'; }
     else{
@@ -511,19 +581,40 @@
   function row(ic,k,v){return '<div class="sumrow"><span class="k">'+icon(ic)+k+'</span><span class="v">'+v+'</span></div>';}
   function setNum(id,val){var el=document.getElementById(id);el.textContent=val;el.classList.remove("tick");void el.offsetWidth;el.classList.add("tick");}
 
-  function renderGoal(){
-    var card=document.getElementById("goalCard");if(!card)return;
-    var goal=(state.settings.goals&&state.settings.goals.workoutsPerWeek)||4;
-    var done=workoutsThisWeek(),prog=Math.min(1,goal?done/goal:0),C=2*Math.PI*33,off=C*(1-prog);
-    var dots="";for(var i=0;i<goal;i++)dots+='<i class="'+(i<done?"on":"")+'"></i>';
-    var sub=done>=goal?"Goal reached this week":(goal-done)+" workout"+((goal-done)===1?"":"s")+" to go";
-    card.innerHTML=
-      '<div class="ring"><svg viewBox="0 0 76 76" width="76" height="76" style="transform:rotate(-90deg)">'
-      +'<circle cx="38" cy="38" r="33" fill="none" stroke="var(--sunk)" stroke-width="7"/>'
-      +'<circle cx="38" cy="38" r="33" fill="none" stroke="var(--accent)" stroke-width="7" stroke-linecap="round" stroke-dasharray="'+C.toFixed(1)+'" stroke-dashoffset="'+C.toFixed(1)+'" data-off="'+off.toFixed(1)+'" style="transition:stroke-dashoffset .8s var(--ease)"/>'
-      +'</svg><div class="rc num">'+done+'</div></div>'
-      +'<div class="gt"><div class="h">This week</div><div class="s">'+sub+'</div><div class="gdots">'+dots+'</div></div>';
-    var arc=card.querySelector('circle[data-off]');setTimeout(function(){if(arc)arc.setAttribute("stroke-dashoffset",arc.getAttribute("data-off"));},60);
+  function renderHero(){
+    var ring=document.getElementById("consistRing");if(!ring)return;
+    var goal=(state.settings.goals&&state.settings.goals.workoutsPerWeek)||4,done=workoutsThisWeek();
+    var prog=Math.min(1,goal?done/goal:0),C=2*Math.PI*26,off=C*(1-prog);
+    ring.innerHTML='<svg viewBox="0 0 62 62" width="62" height="62" style="transform:rotate(-90deg)">'
+      +'<circle cx="31" cy="31" r="26" fill="none" stroke="var(--sunk)" stroke-width="6"/>'
+      +'<circle cx="31" cy="31" r="26" fill="none" stroke="var(--accent)" stroke-width="6" stroke-linecap="round" stroke-dasharray="'+C.toFixed(1)+'" stroke-dashoffset="'+C.toFixed(1)+'" data-off="'+off.toFixed(1)+'" style="transition:stroke-dashoffset .8s var(--ease)"/></svg>'
+      +'<div class="rc num">'+done+'</div>';
+    document.getElementById("heroSub").textContent= done>=goal? "Goal reached — "+done+" of "+goal+" workouts" : done+" of "+goal+" workouts done";
+    var arc=ring.querySelector('circle[data-off]');setTimeout(function(){if(arc)arc.setAttribute("stroke-dashoffset",arc.getAttribute("data-off"));},60);
+  }
+  function renderWeekStrip(){
+    var el=document.getElementById("weekStrip");if(!el)return;el.innerHTML="";
+    var s=startOfWeek(new Date()),tk=todayKey(),today=new Date(),L=["M","T","W","T","F","S","S"];today.setHours(0,0,0,0);
+    for(var i=0;i<7;i++){(function(i){
+      var dd=addDays(s,i),dk=key(dd),e=state.days[dk],future=dd>today;
+      var cls="wday"+(e&&e.exercised?" ex":(e?" rest":""))+(dk===tk?" today":"")+(future?" future":"");
+      var b=document.createElement("button");b.className=cls;
+      b.innerHTML='<span class="dl">'+L[i]+'</span><span class="dd">'+(e&&e.exercised?icon("check"):"")+'</span>';
+      if(!future)b.onclick=function(){activeDate=dk;go("log");};
+      el.appendChild(b);
+    })(i);}
+  }
+  function renderMiniBars(){
+    var el=document.getElementById("weekBars");if(!el)return;el.innerHTML="";
+    var s=startOfWeek(new Date()),today=new Date(),L=["M","T","W","T","F","S","S"];today.setHours(0,0,0,0);
+    for(var i=0;i<7;i++){(function(i){
+      var dd=addDays(s,i),e=state.days[key(dd)],future=dd>today;
+      var h= e&&e.exercised? (({"15":42,"30":62,"45":82,"60+":100})[e.minutes]||64) : (e?16:8);
+      var mb=document.createElement("div");mb.className="mb"+(e&&e.exercised?" on":"");
+      mb.innerHTML='<div class="track"><div class="fill" style="height:0%"></div></div><span class="ml">'+L[i]+'</span>';
+      el.appendChild(mb);
+      var fill=mb.querySelector(".fill");setTimeout(function(){fill.style.height=(future?0:h)+"%";},50);
+    })(i);}
   }
   function checkBackupNudge(){var n=document.getElementById("backupNudge");if(!n)return;var logged=Object.keys(state.days).length,lb=state.settings.lastBackup||0;n.hidden=!(!isExample&&logged>=5&&(Date.now()-lb>12*864e5));}
   function markBackup(){state.settings.lastBackup=Date.now();commitFromExample();var n=document.getElementById("backupNudge");if(n)n.hidden=true;}
@@ -544,21 +635,38 @@
   }
   function setSwitch(el,on){el.classList.toggle("on",on);el.setAttribute("aria-checked",on?"true":"false");}
 
+  var trendView="sugar";
   function renderTrends(){
-    document.getElementById("pctActive").textContent=pctActive(30)+"%";
     var now=new Date(),weeks=[];
     for(var w=6;w>=0;w--){var c=0;for(var i=0;i<7;i++){var e=state.days[key(addDays(now,-(w*7+i)))];if(e&&e.exercised)c++;}weeks.push(c);}
     var chart=document.getElementById("weekChart");chart.innerHTML="";var labs=document.getElementById("weekLabels");labs.innerHTML="";
     weeks.forEach(function(c,i){var bar=document.createElement("div");bar.className="bar"+(i===6?" cur":"");var fill=document.createElement("div");fill.className="fill";fill.style.height="0%";var n=document.createElement("span");n.className="n num";n.textContent=c;fill.appendChild(n);bar.appendChild(fill);chart.appendChild(bar);setTimeout(function(){fill.style.height=(c/7*100)+"%";},40);var s=document.createElement("span");s.textContent=i===6?"This":(7-i)+"w";labs.appendChild(s);});
-    var vals=[];for(var d=13;d>=0;d--){var e=state.days[key(addDays(now,-d))];vals.push(e&&e.sugar?({low:0,med:1,high:2})[e.sugar]:null);}
-    var pts=[],W=300,H=76,step=W/13;vals.forEach(function(v,i){if(v!==null)pts.push([i*step,8+(v/2)*(H-16)]);});
-    var svg=document.getElementById("sugarSpark");
-    if(pts.length<2){svg.innerHTML='<text x="150" y="42" text-anchor="middle" fill="var(--faint)" font-size="12" font-weight="600" font-family="var(--font)">Log a few days to see this</text>';}
-    else{var ds=pts.map(function(p,i){return (i?"L":"M")+p[0].toFixed(1)+","+p[1].toFixed(1);}).join(" ");var area=ds+" L"+pts[pts.length-1][0].toFixed(1)+","+H+" L"+pts[0][0].toFixed(1)+","+H+" Z";svg.innerHTML='<path d="'+area+'" fill="var(--accent)" opacity="0.12"/><path d="'+ds+'" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="'+pts[pts.length-1][0].toFixed(1)+'" cy="'+pts[pts.length-1][1].toFixed(1)+'" r="3.5" fill="var(--accent)"/>';}
-    function avgSugar(start){var s=0,c=0;for(var i=start;i<start+7;i++){var e=state.days[key(addDays(now,-i))];if(e&&e.sugar){s+=({low:0,med:1,high:2})[e.sugar];c++;}}return c?s/c:null;}
-    var recent=avgSugar(0),prev=avgSugar(7),el=document.getElementById("sugarChange");
-    if(recent===null||prev===null){el.textContent="—";el.style.color="var(--muted)";}
-    else{var diff=recent-prev;if(diff<-0.05){el.textContent="Lower";el.style.color="var(--good)";}else if(diff>0.05){el.textContent="Higher";el.style.color="var(--bad)";}else{el.textContent="Same";el.style.color="var(--muted)";}}
+    renderStatRow(); renderSpark(trendView);
+  }
+  function avgSugar(start){var now=new Date(),s=0,c=0;for(var i=start;i<start+7;i++){var e=state.days[key(addDays(now,-i))];if(e&&e.sugar){s+=({low:0,med:1,high:2})[e.sugar];c++;}}return c?s/c:null;}
+  function renderStatRow(){
+    var el=document.getElementById("statRow");if(!el)return;
+    var goal=(state.settings.goals&&state.settings.goals.workoutsPerWeek)||4,ws=workoutsThisWeek();
+    var r=avgSugar(0),p=avgSugar(7),st=(r===null||p===null)?"—":(r-p<-0.05?"Lower":(r-p>0.05?"Higher":"Same"));
+    var items=[["ic-teal","activity",pctActive(30)+"%","Active 30d"],["ic-gold","flame",exerciseStreak()+"d","Streak"],["ic-violet","check",ws+"/"+goal,"This week"],["ic-good","cube",st,"Sugar"]];
+    el.innerHTML=items.map(function(it){return '<div class="sritem"><div class="si '+it[0]+'">'+icon(it[1])+'</div><div class="sv">'+it[2]+'</div><div class="sk">'+it[3]+'</div></div>';}).join("");
+  }
+  function renderSpark(view){
+    trendView=view;
+    [].forEach.call(document.querySelectorAll("#trendChips .vchip"),function(c){c.classList.toggle("on",c.dataset.v===view);});
+    var svg=document.getElementById("sugarSpark"),lbl=document.getElementById("trendChartLbl"),now=new Date(),W=300,H=76,pts=[],col;
+    if(view==="sugar"){
+      lbl.innerHTML='Sugar level · last 14 days <span style="color:var(--accent);text-transform:none;letter-spacing:0">lower is better</span>';
+      col="var(--gold)";var step=W/13;
+      for(var d=13;d>=0;d--){var e=state.days[key(addDays(now,-d))];if(e&&e.sugar)pts.push([(13-d)*step,8+(({low:0,med:1,high:2})[e.sugar]/2)*(H-16)]);}
+    }else{
+      lbl.innerHTML='Active days per week · last 8 weeks';col="var(--accent)";var step2=W/7;
+      for(var w=7;w>=0;w--){var c=0;for(var i=0;i<7;i++){var e2=state.days[key(addDays(now,-(w*7+i)))];if(e2&&e2.exercised)c++;}pts.push([(7-w)*step2,H-8-(c/7)*(H-16)]);}
+    }
+    if(pts.length<2){svg.innerHTML='<text x="150" y="42" text-anchor="middle" fill="var(--faint)" font-size="12" font-weight="600" font-family="var(--font)">Log a few days to see this</text>';return;}
+    var ds=pts.map(function(p,i){return (i?"L":"M")+p[0].toFixed(1)+","+p[1].toFixed(1);}).join(" ");
+    var area=ds+" L"+pts[pts.length-1][0].toFixed(1)+","+H+" L"+pts[0][0].toFixed(1)+","+H+" Z";
+    svg.innerHTML='<path d="'+area+'" fill="'+col+'" opacity="0.13"/><path d="'+ds+'" fill="none" stroke="'+col+'" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="'+pts[pts.length-1][0].toFixed(1)+'" cy="'+pts[pts.length-1][1].toFixed(1)+'" r="3.5" fill="'+col+'"/>';
   }
 
   function renderHistory(){
@@ -621,6 +729,7 @@
   document.getElementById("wipeBtn").onclick=function(){var b=this;if(b.dataset.c){try{localStorage.removeItem(KEY);}catch(e){}state=exampleState();isExample=true;applyTheme();toast("All data erased");go("home");}else{b.dataset.c="1";b.textContent="Tap again to confirm";setTimeout(function(){b.dataset.c="";b.textContent="Erase all data";},3000);}};
   document.getElementById("prevM").onclick=function(){calMonth.setMonth(calMonth.getMonth()-1);renderHistory();};
   document.getElementById("nextM").onclick=function(){calMonth.setMonth(calMonth.getMonth()+1);renderHistory();};
+  document.querySelectorAll("#trendChips .vchip").forEach(function(c){c.onclick=function(){renderSpark(c.dataset.v);};});
   document.getElementById("mClose").onclick=function(){document.getElementById("milestone").classList.remove("show");};
   document.getElementById("milestone").onclick=function(ev){if(ev.target===this)this.classList.remove("show");};
 
