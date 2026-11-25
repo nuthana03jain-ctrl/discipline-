@@ -230,6 +230,37 @@
   .empty{text-align:center;color:var(--ink-muted);padding:30px 10px;font-weight:600}
   .empty .em{font-size:40px;display:block;margin-bottom:8px}
 
+  /* ---------- weekly goal ring ---------- */
+  .goalcard{display:flex;align-items:center;gap:16px;background:var(--surface-raised);border:1.5px solid var(--hairline);border-radius:var(--r-lg);padding:16px;box-shadow:var(--shadow-soft)}
+  .ring{width:84px;height:84px;flex:none;position:relative}
+  .ring .rc{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--font-script);font-size:26px;color:var(--ink)}
+  .goalcard .gt{flex:1;min-width:0}
+  .goalcard .gt .h{font-family:var(--font-display);font-weight:700;font-size:18px;color:var(--ink)}
+  .goalcard .gt .s{font-size:13px;color:var(--ink-muted);font-weight:700;margin-top:2px}
+  .goalcard .gt .gdots{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}
+  .goalcard .gt .gdots i{width:14px;height:14px;border-radius:50%;background:var(--surface-sunk);border:1.5px solid var(--hairline)}
+  .goalcard .gt .gdots i.on{background:var(--yolk);border-color:var(--yolk)}
+
+  /* ---------- onboarding overlay ---------- */
+  .overlay{position:fixed;inset:0;z-index:60;background:var(--surface-base);display:flex;flex-direction:column;justify-content:center;
+    gap:18px;overflow-y:auto;
+    padding:28px max(22px,env(safe-area-inset-left,0px)) calc(28px + env(safe-area-inset-bottom,0px)) max(22px,env(safe-area-inset-left,0px))}
+  .overlay .big-logo{font-family:var(--font-script);font-size:42px;color:var(--ink);line-height:1.1}
+  .overlay p{font-size:16px;color:var(--ink-muted);font-weight:700;margin:0;max-width:32ch;line-height:1.5}
+  .overlay .goalpick .chip{font-size:16px;padding:12px 18px}
+  .overlay .skip{background:transparent;border:none;color:var(--amber-strong);font-weight:800;font-size:14px;align-self:flex-start;padding:6px 0}
+
+  /* ---------- milestone modal ---------- */
+  .mmodal{position:fixed;inset:0;z-index:70;display:grid;place-items:center;padding:24px;
+    background:rgba(40,28,34,.5);opacity:0;pointer-events:none;transition:opacity .25s}
+  .mmodal.show{opacity:1;pointer-events:auto}
+  .mmodal .box{background:var(--surface-raised);border-radius:var(--r-xl);padding:28px 24px;text-align:center;
+    max-width:320px;box-shadow:var(--shadow-card);transform:scale(.8);transition:transform .35s var(--spring)}
+  .mmodal.show .box{transform:scale(1)}
+  .mmodal .emoji{font-size:56px;line-height:1}
+  .mmodal .mt{font-family:var(--font-script);font-size:30px;color:var(--ink);margin:8px 0 4px}
+  .mmodal .md{font-size:15px;color:var(--ink-muted);font-weight:700;margin-bottom:18px;line-height:1.45}
+
   @media (prefers-reduced-motion: reduce){
     *{animation:none!important;transition:none!important}
   }
@@ -255,10 +286,15 @@
         <span>👋 Showing example data so you can look around.</span>
         <button id="startFresh">Start fresh</button>
       </div>
+      <div class="banner" id="backupNudge" hidden>
+        <span>💾 It's been a while — back up your data?</span>
+        <button id="goBackup">Back up</button>
+      </div>
       <div class="tiles">
         <div class="tile hero"><span class="flame">🔥</span> <span class="big" id="exStreak">0</span><div class="cap">Exercise streak</div></div>
         <div class="tile pink"><span class="flame">🩷</span> <span class="big" id="sugarStreak" style="color:var(--blush-strong)">0</span><div class="cap">Sugar-free days</div></div>
       </div>
+      <div class="goalcard" id="goalCard"></div>
       <div class="lbl">Today so far</div>
       <div class="card" id="todayCard"></div>
       <button class="btn primary" id="logTodayBtn">＋ Log today</button>
@@ -277,6 +313,8 @@
       <div id="exPickWrap">
         <div class="lbl">Which exercise?</div>
         <div class="chips" id="exChips"></div>
+        <div class="lbl" style="margin-top:14px">How long? (optional)</div>
+        <div class="chips" id="durChips"></div>
       </div>
 
       <div class="lbl">How healthy did you eat?</div>
@@ -345,6 +383,9 @@
         <div style="font-size:12px;color:var(--ink-muted);font-weight:600">Reminders work best on Android. On iPhone, a repeating phone alarm is the reliable backup.</div>
       </div>
 
+      <div class="lbl">Weekly workout goal</div>
+      <div class="card"><div class="chips" id="goalEditChips"></div></div>
+
       <div class="lbl">My exercises</div>
       <div class="card">
         <div class="chips" id="exEditChips" style="margin-bottom:12px"></div>
@@ -389,6 +430,23 @@
 <div class="toast" id="toast"></div>
 <canvas id="confetti"></canvas>
 
+<div class="overlay" id="onboard" hidden>
+  <div class="big-logo">Sunny Tracker</div>
+  <p>Hi! Let's set one simple goal so your streaks actually mean something. How many days a week do you want to move your body?</p>
+  <div class="chips goalpick" id="goalPick"></div>
+  <button class="btn primary" id="obStart" style="margin-top:6px">Let's go ☀️</button>
+  <button class="skip" id="obSkip">Just exploring for now</button>
+</div>
+
+<div class="mmodal" id="milestone">
+  <div class="box">
+    <div class="emoji" id="mEmoji">🎉</div>
+    <div class="mt" id="mTitle">Nice!</div>
+    <div class="md" id="mDesc"></div>
+    <button class="btn primary" id="mClose" style="width:auto;padding:12px 30px">Yay!</button>
+  </div>
+</div>
+
 <script>
 (function(){
   "use strict";
@@ -407,7 +465,7 @@
   var defExercises=["Walk","Run","Gym","Yoga","Cycling","Sports"];
   var state, activeDate=todayKey(), calMonth=new Date(), isExample=false;
 
-  function freshState(){return {days:{},settings:{exercises:defExercises.slice(),reminder:{on:false,time:"20:00"},theme:"system"}};}
+  function freshState(){return {days:{},settings:{exercises:defExercises.slice(),reminder:{on:false,time:"20:00"},theme:"system",goals:{workoutsPerWeek:4},lastBackup:0}};}
 
   function exampleState(){
     var s=freshState(); var t=new Date();
@@ -434,6 +492,8 @@
     if(!state.settings.exercises) state.settings.exercises=defExercises.slice();
     if(!state.settings.reminder) state.settings.reminder={on:false,time:"20:00"};
     if(!state.settings.theme) state.settings.theme="system";
+    if(!state.settings.goals) state.settings.goals={workoutsPerWeek:4};
+    if(typeof state.settings.lastBackup!=="number") state.settings.lastBackup=0;
   }
   function save(){ if(isExample) return; try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){} }
   function commitFromExample(){ if(isExample){isExample=false;} save(); }
@@ -458,9 +518,59 @@
     return have? Math.round(hit/days*100):0;
   }
 
+  function startOfWeek(now){var d=new Date(now);var dow=(d.getDay()+6)%7;d.setHours(0,0,0,0);d.setDate(d.getDate()-dow);return d;}
+  function weekKey(){return key(startOfWeek(new Date()));}
+  function workoutsThisWeek(){var s=startOfWeek(new Date()),n=0,today=new Date();today.setHours(0,0,0,0);
+    for(var i=0;i<7;i++){var dd=addDays(s,i);if(dd>today)break;var e=state.days[key(dd)];if(e&&e.exercised)n++;}return n;}
+
+  function renderGoal(){
+    var card=document.getElementById("goalCard");if(!card)return;
+    var goal=(state.settings.goals&&state.settings.goals.workoutsPerWeek)||4;
+    var done=workoutsThisWeek(),prog=Math.min(1,goal?done/goal:0);
+    var C=2*Math.PI*36,off=C*(1-prog);
+    var dots="";for(var i=0;i<goal;i++){dots+='<i class="'+(i<done?"on":"")+'"></i>';}
+    var sub= done>=goal? "Goal smashed this week! 🎉" : (goal-done)+" workout"+((goal-done)===1?"":"s")+" to go";
+    card.innerHTML=
+      '<div class="ring"><svg viewBox="0 0 84 84" width="84" height="84" style="transform:rotate(-90deg)">'
+      +'<circle cx="42" cy="42" r="36" fill="none" stroke="var(--surface-sunk)" stroke-width="9"/>'
+      +'<circle cx="42" cy="42" r="36" fill="none" stroke="var(--yolk)" stroke-width="9" stroke-linecap="round" stroke-dasharray="'+C.toFixed(1)+'" stroke-dashoffset="'+C.toFixed(1)+'" data-off="'+off.toFixed(1)+'" style="transition:stroke-dashoffset .8s var(--spring)"/>'
+      +'</svg><div class="rc">'+done+'</div></div>'
+      +'<div class="gt"><div class="h">This week</div><div class="s">'+sub+'</div><div class="gdots">'+dots+'</div></div>';
+    var arc=card.querySelector('circle[data-off]');
+    setTimeout(function(){if(arc)arc.setAttribute("stroke-dashoffset",arc.getAttribute("data-off"));},60);
+  }
+
+  function checkBackupNudge(){
+    var nudge=document.getElementById("backupNudge");if(!nudge)return;
+    var logged=Object.keys(state.days).length,lb=state.settings.lastBackup||0;
+    nudge.hidden=!(!isExample && logged>=5 && (Date.now()-lb> 12*86400000));
+  }
+  function markBackup(){state.settings.lastBackup=Date.now();commitFromExample();var n=document.getElementById("backupNudge");if(n)n.hidden=true;}
+
+  var MILESTONES=[3,7,14,21,30,50,75,100,150,200,365];
+  function showMilestone(emoji,title,desc){
+    document.getElementById("mEmoji").textContent=emoji;
+    document.getElementById("mTitle").textContent=title;
+    document.getElementById("mDesc").textContent=desc;
+    document.getElementById("milestone").classList.add("show");
+    celebrate();
+  }
+  function maybeMilestone(){
+    var es=exerciseStreak();
+    var goal=(state.settings.goals&&state.settings.goals.workoutsPerWeek)||4, ws=workoutsThisWeek();
+    if(MILESTONES.indexOf(es)>=0 && state.settings.lastMilestone!==es){
+      state.settings.lastMilestone=es;commitFromExample();
+      showMilestone("🔥",es+"-day streak!","You've moved "+es+" days in a row. Incredible!");
+    }else if(goal>0 && ws===goal && state.settings.lastWeekGoal!==weekKey()){
+      state.settings.lastWeekGoal=weekKey();commitFromExample();
+      showMilestone("🎉","Weekly goal done!","You hit your "+goal+"-workout goal this week. Go you!");
+    }
+  }
+
   /* ---------- rendering ---------- */
   function renderHome(){
     document.getElementById("exampleBanner").hidden=!isExample;
+    renderGoal(); checkBackupNudge();
     var es=exerciseStreak(), ss=sugarFreeStreak();
     document.getElementById("exStreak").textContent=es;
     document.getElementById("sugarStreak").textContent=ss;
@@ -471,7 +581,7 @@
     }else{
       var sug=SUGAR[e.sugar]||{t:"—",c:"suc"};
       card.innerHTML=
-        row("🏃","Exercise", e.exercised? (e.exercise||"Done"):"Rest day", e.exercised?"var(--success)":"var(--ink-muted)")+
+        row("🏃","Exercise", e.exercised? ((e.exercise||"Done")+(e.minutes?" · "+(e.minutes==="60+"?"60+ min":e.minutes+" min"):"")):"Rest day", e.exercised?"var(--success)":"var(--ink-muted)")+
         row("🥗","Eating", FACE[e.eating]+" "+["Not great","Okay","Great"][e.eating])+
         '<div class="sumrow"><span class="k"><span class="dot">🍰</span>Sugar</span><span class="badge '+sug.c+'">'+sug.t+'</span></div>';
     }
@@ -494,6 +604,14 @@
       var b=document.createElement("button"); b.className="chip"+(e.exercise===name?" on":""); b.textContent=name;
       b.onclick=function(){ e.exercise=name; state.days[activeDate]=e; renderLog(); };
       chips.appendChild(b);
+    });
+    // duration chips
+    var durs=[["15","15 min"],["30","30 min"],["45","45 min"],["60+","60+ min"]];
+    var dc=document.getElementById("durChips"); dc.innerHTML="";
+    durs.forEach(function(p){
+      var b=document.createElement("button"); b.className="chip"+(e.minutes===p[0]?" on":""); b.textContent=p[1];
+      b.onclick=function(){ e.minutes=(e.minutes===p[0]?null:p[0]); state.days[activeDate]=e; renderLog(); };
+      dc.appendChild(b);
     });
     // faces
     [].forEach.call(document.querySelectorAll("#faces .face"),function(f){
@@ -577,6 +695,12 @@
         state.settings.exercises=state.settings.exercises.filter(function(x){return x!==name;}); commitFromExample(); renderSettings(); };
       ec.appendChild(b);
     });
+    var gc=document.getElementById("goalEditChips"); gc.innerHTML="";
+    [3,4,5,6,7].forEach(function(n){
+      var b=document.createElement("button"); b.className="chip"+(((state.settings.goals&&state.settings.goals.workoutsPerWeek)||4)===n?" on":""); b.textContent=n+"× / week";
+      b.onclick=function(){ state.settings.goals.workoutsPerWeek=n; commitFromExample(); renderSettings(); };
+      gc.appendChild(b);
+    });
     [].forEach.call(document.querySelectorAll("#themeSeg .pill"),function(p){
       p.className="pill"+(p.dataset.v===state.settings.theme?" on":"");
     });
@@ -621,13 +745,14 @@
   document.getElementById("saveBtn").onclick=function(){
     var e=state.days[activeDate];
     if(!e||(!e.exercised&&e.sugar===null&&e.eating===undefined)){toast("Tap something to log first");return;}
+    var isToday=activeDate===todayKey();
     commitFromExample();
     renderHome();
     var tile=document.getElementById("exStreak").parentNode;
     tile.classList.remove("bump");void tile.offsetWidth;tile.classList.add("bump");
     celebrate();
-    toast(activeDate===todayKey()?"Saved! Keep it going 🔥":"Day updated ✓");
-    setTimeout(function(){go("home");},420);
+    toast(isToday?"Saved! Keep it going 🔥":"Day updated ✓");
+    setTimeout(function(){ go("home"); if(isToday) maybeMilestone(); },440);
   };
   document.getElementById("clearDayBtn").onclick=function(){
     delete state.days[activeDate]; commitFromExample(); renderLog(); toast("Day cleared");
@@ -649,12 +774,15 @@
   document.querySelectorAll("#themeSeg .pill").forEach(function(p){p.onclick=function(){
     state.settings.theme=p.dataset.v; commitFromExample(); applyTheme(); renderSettings();
   };});
+  document.getElementById("goBackup").onclick=function(){go("settings");};
   document.getElementById("copyBackup").onclick=function(){
+    markBackup();
     var box=document.getElementById("backupBox"); box.select();
     if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(box.value).then(function(){toast("Backup copied 📋");},function(){document.execCommand&&document.execCommand("copy");toast("Backup selected — copy it");});}
     else{try{document.execCommand("copy");toast("Backup copied 📋");}catch(e){toast("Select the text and copy");}}
   };
   document.getElementById("downloadBackup").onclick=function(){
+    markBackup();
     try{var blob=new Blob([document.getElementById("backupBox").value],{type:"application/json"});
       var a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="sunny-tracker-backup.json";
       document.body.appendChild(a);a.click();a.remove();toast("Saved (if your browser allows)");}
@@ -676,6 +804,31 @@
   };
   document.getElementById("prevM").onclick=function(){calMonth.setMonth(calMonth.getMonth()-1);renderHistory();};
   document.getElementById("nextM").onclick=function(){calMonth.setMonth(calMonth.getMonth()+1);renderHistory();};
+
+  // milestone modal
+  document.getElementById("mClose").onclick=function(){document.getElementById("milestone").classList.remove("show");};
+  document.getElementById("milestone").onclick=function(ev){if(ev.target===this)this.classList.remove("show");};
+
+  // onboarding
+  (function(){
+    var done=false; try{done=localStorage.getItem("sunnyTracker.onboarded")==="1";}catch(e){}
+    var ov=document.getElementById("onboard"), chosen=4;
+    var gp=document.getElementById("goalPick");
+    [3,4,5,6,7].forEach(function(n){
+      var b=document.createElement("button"); b.className="chip"+(n===4?" on":""); b.textContent=n+"×"; b.dataset.n=n;
+      b.onclick=function(){chosen=n;[].forEach.call(gp.children,function(c){c.classList.toggle("on",+c.dataset.n===n);});};
+      gp.appendChild(b);
+    });
+    function finish(start){
+      try{localStorage.setItem("sunnyTracker.onboarded","1");}catch(e){}
+      if(start){ state=freshState(); isExample=false; state.settings.goals.workoutsPerWeek=chosen; state.settings.lastBackup=Date.now(); save(); applyTheme(); }
+      else if(!isExample){ state.settings.goals.workoutsPerWeek=chosen; save(); }
+      ov.hidden=true; go("home");
+    }
+    document.getElementById("obStart").onclick=function(){finish(true);};
+    document.getElementById("obSkip").onclick=function(){finish(false);};
+    if(!done) ov.hidden=false;
+  })();
 
   /* ---------- theme ---------- */
   function applyTheme(){
