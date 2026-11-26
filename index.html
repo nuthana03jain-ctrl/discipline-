@@ -190,6 +190,61 @@
   .banner{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--accent-soft);border-radius:var(--r-md);padding:12px 14px;font-size:13px;font-weight:600}
   .banner button{border:none;background:transparent;color:var(--accent-text);font-weight:800;font-size:13px}
 
+  /* nutrition summary */
+  .nsum .srow{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 0;border-top:1px solid var(--line)}
+  .nsum .srow:first-of-type{border-top:none;padding-top:4px}
+  .nsum .srow .k{display:flex;align-items:center;gap:10px;font-weight:600;font-size:14px}
+  .nsum .srow .k .ic{width:18px;height:18px;color:var(--accent-text)}
+  .nsum .srow .v{font-weight:600;color:var(--muted);font-size:13px}
+  .stepper{display:flex;align-items:center;gap:10px}
+  .stepper button{width:32px;height:32px;border-radius:10px;border:1px solid var(--line);background:var(--sunk);display:grid;place-items:center;color:var(--ink)}
+  .stepper button .ic{width:15px;height:15px}
+  .stepper b{font-family:var(--head);font-weight:800;min-width:46px;text-align:center}
+
+  /* meal slot */
+  .slot{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:14px 16px}
+  .slot .sh{display:flex;align-items:center;justify-content:space-between}
+  .slot .sh b{font-family:var(--head);font-weight:700;font-size:15px}
+  .slot .sh .sk{font-size:13px;color:var(--muted);font-weight:700}
+  .slot .item{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 0;border-top:1px solid var(--line);margin-top:4px}
+  .slot .item .in{font-size:14px;font-weight:500;flex:1;min-width:0}
+  .slot .item .ik{font-size:13px;color:var(--muted);font-weight:600}
+  .slot .item .rm{border:none;background:transparent;color:var(--faint);padding:2px;display:grid;place-items:center}
+  .slot .item .rm .ic{width:16px;height:16px}
+  .slot .add{margin-top:11px;width:100%;border:1px dashed var(--line);background:transparent;border-radius:var(--r-sm);padding:10px;font-weight:700;font-size:13px;color:var(--accent-text);display:flex;align-items:center;justify-content:center;gap:6px}
+  .slot .add .ic{width:15px;height:15px}
+
+  /* recipe rec card */
+  .rec{display:flex;align-items:center;gap:13px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:12px 13px}
+  .rec .rimg{width:50px;height:50px;border-radius:13px;flex:none;display:grid;place-items:center;background:var(--accent);color:var(--accent-ink)}
+  .rec .rimg .ic{width:24px;height:24px}
+  .rec .rt{flex:1;min-width:0}
+  .rec .rt b{font-weight:700;font-size:14.5px;display:block;line-height:1.2}
+  .rec .rt span{font-size:12px;color:var(--muted)}
+  .rec .rk{font-family:var(--head);font-weight:800;font-size:13px;color:var(--muted);text-align:right;flex:none}
+
+  /* sheet */
+  .sheet{position:fixed;inset:0;z-index:60;background:var(--bg);display:flex;flex-direction:column;transform:translateY(100%);transition:transform .32s var(--ease)}
+  .sheet.show{transform:none}
+  .sheet .shead{display:flex;align-items:center;gap:12px;padding:16px 18px;padding-top:calc(16px + env(safe-area-inset-top,0px));border-bottom:1px solid var(--line)}
+  .sheet .shead .st{flex:1;min-width:0;font-family:var(--head);font-weight:800;font-size:19px;letter-spacing:-.01em}
+  .sheet .shead .close{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--sunk);display:grid;place-items:center;color:var(--ink);flex:none}
+  .sheet .shead .close .ic{width:18px;height:18px}
+  .sheet .sbody{flex:1;overflow-y:auto;padding:16px 18px calc(28px + env(safe-area-inset-bottom,0px));max-width:600px;margin:0 auto;width:100%}
+  .foodrow{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:13px 0;border-bottom:1px solid var(--line)}
+  .foodrow .fn{font-weight:600;font-size:14.5px}
+  .foodrow .fk{font-size:12.5px;color:var(--muted);margin-top:2px}
+  .foodrow .fadd{border:none;background:var(--accent);color:var(--accent-ink);border-radius:10px;width:34px;height:34px;display:grid;place-items:center;flex:none}
+  .foodrow .fadd .ic{width:18px;height:18px}
+  .rhero{font-family:var(--head);font-weight:800;font-size:23px;letter-spacing:-.01em;margin-bottom:4px}
+  .rtag{color:var(--accent-text);font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.06em}
+  .rmac{display:flex;gap:10px;margin:16px 0}
+  .rmac .m{flex:1;background:var(--sunk);border-radius:var(--r-md);padding:11px;text-align:center}
+  .rmac .m .mv{font-family:var(--head);font-weight:800;font-size:17px}
+  .rmac .m .mk{font-size:11px;color:var(--muted);font-weight:600;margin-top:2px}
+  .ingl{margin:8px 0 0;padding-left:18px} .ingl li{margin:7px 0;font-size:14px}
+  .steps{margin:8px 0 0;padding-left:20px} .steps li{margin:11px 0;font-size:14px;line-height:1.55}
+
   @media (prefers-reduced-motion: reduce){ *{animation:none!important;transition:none!important} }
 </style>
 </head>
@@ -220,9 +275,11 @@
       </div>
 
       <div class="card wkcard sec">
-        <div><div class="cat" id="wkCat">Today's workout</div><div class="wt" id="wkName">Rest day</div>
-        <div class="meta" id="wkMeta"></div></div>
-        <button class="btn primary" id="startWk"><span class="ic" data-ic="play"></span>Start workout</button>
+        <div class="cat">Activity today</div>
+        <div class="rowb"><div class="wt"><span id="wkMin" class="num">0</span> min</div><div class="lbl" id="wkGoalTxt"></div></div>
+        <div class="kbar"><i id="wkBar" style="width:0%"></i></div>
+        <div class="meta" id="wkMeta"></div>
+        <button class="btn primary" id="logWkBtn"><span class="ic" data-ic="plus"></span>Log a workout</button>
       </div>
 
       <div class="card sec">
@@ -234,26 +291,27 @@
       </div>
     </section>
 
-    <!-- WORKOUTS (shell) -->
+    <!-- WORKOUTS -->
     <section class="screen" id="s-workouts" hidden>
       <div class="pagetitle">Workouts</div>
-      <div class="chips" id="wkChips">
-        <button class="chip on">All</button><button class="chip">Strength</button><button class="chip">Cardio</button><button class="chip">HIIT</button><button class="chip">Yoga</button><button class="chip">Core</button>
+      <div class="card wkcard sec">
+        <div class="cat">Activity today</div>
+        <div class="rowb"><div class="wt"><span id="wMinToday" class="num">0</span> min</div>
+          <button class="btn primary sm" id="logWkBtn2"><span class="ic" data-ic="plus"></span>Log workout</button></div>
       </div>
-      <div class="sec"><span class="lbl">Recommended for you</span><div class="fcards" id="wkFeatured"></div></div>
-      <div class="shellnote"><span class="ic" data-ic="bolt"></span>Full workout library, guided player &amp; logging — coming in the next build.</div>
+      <div class="sec"><span class="lbl">Exercise library · real exercises</span>
+        <div class="chips" id="exCatChips"></div>
+        <div id="exList" class="sec"></div>
+      </div>
+      <div class="sec"><span class="lbl">Recent activity</span><div id="wkHistory" class="card"></div></div>
     </section>
 
     <!-- NUTRITION (shell) -->
     <section class="screen" id="s-nutrition" hidden>
-      <div class="pagetitle">Nutrition</div>
-      <div class="card sec">
-        <span class="lbl">Today</span>
-        <div class="rowb"><b class="num" id="nKcal" style="font-size:26px">0</b><span style="color:var(--muted);font-weight:600" id="nTarget">of 0 kcal</span></div>
-        <div class="kbar"><i id="nBar" style="width:0%"></i></div>
-      </div>
-      <div class="sec"><span class="lbl">Recommended for your goal</span><div id="mealRecs" class="sec"></div></div>
-      <div class="shellnote"><span class="ic" data-ic="bolt"></span>Meal logging, full recipes &amp; sugar tracking — coming next.</div>
+      <div class="rowb"><div class="pagetitle">Nutrition</div><div class="lbl" id="nutDate"></div></div>
+      <div class="card nsum sec" id="nutSummary"></div>
+      <div class="sec"><span class="lbl">Today's meals</span><div id="mealSlots" class="sec"></div></div>
+      <div class="sec"><span class="lbl" id="recLbl">Recommended for you</span><div id="mealRecs" class="sec"></div></div>
     </section>
 
     <!-- PROGRESS (shell) -->
@@ -323,6 +381,50 @@
   </nav>
 </div>
 
+<div class="sheet" id="foodSheet" hidden>
+  <div class="shead"><div class="st" id="foodSheetT">Add food</div><button class="close" id="foodClose" data-ic="plus" style="transform:rotate(45deg)"></button></div>
+  <div class="sbody">
+    <input class="inp" id="foodSearch" placeholder="Search foods…" style="margin-bottom:10px">
+    <div id="foodList"></div>
+    <div style="margin-top:20px"><span class="lbl">Add a custom food</span>
+      <div class="card" style="margin-top:10px;display:flex;flex-direction:column;gap:10px">
+        <input class="inp" id="cfName" placeholder="Food name">
+        <div style="display:flex;gap:8px">
+          <input class="inp" id="cfKcal" type="number" inputmode="numeric" placeholder="kcal">
+          <input class="inp" id="cfSugar" type="number" inputmode="numeric" placeholder="sugar g">
+        </div>
+        <div style="display:flex;gap:8px">
+          <input class="inp" id="cfP" type="number" inputmode="numeric" placeholder="protein">
+          <input class="inp" id="cfC" type="number" inputmode="numeric" placeholder="carbs">
+          <input class="inp" id="cfF" type="number" inputmode="numeric" placeholder="fat">
+        </div>
+        <button class="btn primary" id="cfAdd"><span class="ic" data-ic="plus"></span>Add custom food</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sheet" id="recipeSheet" hidden>
+  <div class="shead"><div class="st" id="recT">Recipe</div><button class="close" id="recClose" data-ic="plus" style="transform:rotate(45deg)"></button></div>
+  <div class="sbody" id="recBody"></div>
+</div>
+
+<div class="sheet" id="wkSheet" hidden>
+  <div class="shead"><div class="st">Log a workout</div><button class="close" id="wkClose" data-ic="plus" style="transform:rotate(45deg)"></button></div>
+  <div class="sbody">
+    <span class="lbl">Type of workout</span>
+    <div class="chips" id="wkTypeChips" style="margin:10px 0 22px"></div>
+    <span class="lbl">How many minutes?</span>
+    <div class="stepper" style="margin:14px 0 24px;justify-content:center;gap:18px"><button id="wkMinus">—</button><b id="wkMinsVal" class="num" style="font-size:34px;min-width:72px">30</b><button id="wkPlus">+</button></div>
+    <button class="btn primary" id="wkSave"><span class="ic" data-ic="check"></span>Save workout</button>
+  </div>
+</div>
+
+<div class="sheet" id="exSheet" hidden>
+  <div class="shead"><div class="st" id="exT">Exercise</div><button class="close" id="exClose" data-ic="plus" style="transform:rotate(45deg)"></button></div>
+  <div class="sbody" id="exBody"></div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
@@ -345,7 +447,9 @@
     clock:'<circle cx="12" cy="12" r="8.3"/><path d="M12 7.6V12l3 1.8"/>',
     scale:'<circle cx="12" cy="12" r="8.5"/><path d="M12 12l3.2-4.2"/><path d="M7 20h10"/>',
     bolt:'<path d="M13 3 5 13.5h5.5L10 21l8.5-10.5H13z"/>',
-    fire2:'<path d="M12 3c2 3 .5 4.5 2.5 6.5 M12 21a5 5 0 0 0 5-5c0-3-2-5-3-7-.5 2-2 2.5-3 3.5-1.2 1.2-2 2.3-2 3.5a5 5 0 0 0 3 5z"/>'
+    fire2:'<path d="M12 3c2 3 .5 4.5 2.5 6.5 M12 21a5 5 0 0 0 5-5c0-3-2-5-3-7-.5 2-2 2.5-3 3.5-1.2 1.2-2 2.3-2 3.5a5 5 0 0 0 3 5z"/>',
+    minus:'<path d="M5 12h14"/>',
+    x:'<path d="M6 6l12 12M18 6 6 18"/>'
   };
   function icon(n){return '<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+(P[n]||"")+'</svg>';}
   function paintIcons(){document.querySelectorAll("[data-ic]").forEach(function(el){if(!el.dataset.done){el.innerHTML=icon(el.dataset.ic);el.dataset.done="1";}});}
@@ -359,21 +463,24 @@
   function freshProfile(){return {name:"",sex:"female",age:28,heightCm:166,weightKg:62,goal:"maintain",activity:"moderate",diet:"veg"};}
   function freshState(){return {profile:freshProfile(),days:{},settings:{theme:"system",reminder:{on:false,time:"20:00"}}};}
 
-  var PLAN=["Rest · mobility","Full-Body Strength","Cardio · Intervals","Upper Body","HIIT Burn","Lower Body","Yoga · Recovery"];
-  var PLANCAT=["Recovery","Strength","Cardio","Strength","HIIT","Strength","Mobility"];
+  var PLAN=["Mobility","Full-Body Strength","Cardio","Upper Body","Core & Cardio","Lower Body","Yoga"];
+  var WKTYPES=["Strength","Cardio","Yoga","Core","Walk","Full body","Other"];
+  var EXCATS=["Chest","Back","Legs","Shoulders","Arms","Core","Cardio","Stretch"];
   function demoState(){
     var s=freshState(); s.profile.name="Alex";
     var t=new Date();
     for(var i=0;i<28;i++){var d=addDays(t,-i),wd=d.getDay();
       var rest=(wd===0&&i%2===0);
       var mins= rest?0:[25,30,35,40,45][i%5];
-      var meals=[{name:"Breakfast",kcal:340,p:20,c:44,f:9},{name:"Lunch",kcal:tideg(i,520),p:34,c:52,f:16}];
-      if(i%3!==0)meals.push({name:"Snack",kcal:180,p:8,c:22,f:7});
-      s.days[key(d)]={workoutMin:mins,workoutName:rest?"Rest day":PLAN[wd],meals:meals,water:[4,5,6,5,7][i%5],weight:62-(i*0.03)};
+      var log={
+        breakfast:[{name:"Greek yogurt & berries",kcal:320,p:22,c:40,f:7,sugar:18}],
+        lunch:[{name:"Chickpea salad wrap",kcal:430,p:18,c:52,f:15,sugar:6}],
+        dinner:[], snack: i%3!==0?[{name:"Apple & peanut butter",kcal:180,p:5,c:22,f:9,sugar:14}]:[]
+      };
+      s.days[key(d)]={workoutMin:mins,workoutName:rest?"Rest day":PLAN[wd],log:log,water:[4,5,6,5,7][i%5],weight:62-(i*0.03)};
     }
     return s;
   }
-  function tideg(i,b){return b+((i*37)%120)-60;}
 
   function load(){
     try{var raw=localStorage.getItem(KEY);if(raw){state=JSON.parse(raw);isDemo=false;}else{state=demoState();isDemo=true;}}
@@ -384,7 +491,7 @@
   }
   function save(){if(isDemo)return;try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}}
   function commit(){isDemo=false;save();}
-  function today(){var k=todayKey();if(!state.days[k])state.days[k]={workoutMin:0,workoutName:null,meals:[],water:0,weight:null};return state.days[k];}
+  function today(){var k=todayKey();if(!state.days[k])state.days[k]={workoutMin:0,workoutName:null,log:{breakfast:[],lunch:[],dinner:[],snack:[]},water:0,weight:null};return state.days[k];}
 
   /* ---- targets (Mifflin-St Jeor) ---- */
   function targets(){
@@ -397,8 +504,71 @@
     return {kcal:kcal, water:water, move:30, protein:Math.round(p.weightKg*1.6), workoutsPerWeek:4};
   }
 
-  function dayKcal(d){return (d.meals||[]).reduce(function(a,m){return a+(m.kcal||0);},0);}
-  function dayMacros(d){var o={p:0,c:0,f:0};(d.meals||[]).forEach(function(m){o.p+=m.p||0;o.c+=m.c||0;o.f+=m.f||0;});return o;}
+  var SLOTS=["breakfast","lunch","dinner","snack"];
+  var SLOTLBL={breakfast:"Breakfast",lunch:"Lunch",dinner:"Dinner",snack:"Snacks"};
+  function dayLog(d){if(!d.log){d.log={breakfast:[],lunch:[],dinner:[],snack:[]};if(d.meals&&d.meals.length)d.log.lunch=d.meals.slice();}return d.log;}
+  function allItems(d){var g=dayLog(d),a=[];SLOTS.forEach(function(s){(g[s]||[]).forEach(function(it){a.push(it);});});return a;}
+  function dayKcal(d){return allItems(d).reduce(function(a,m){return a+(m.kcal||0);},0);}
+  function dayMacros(d){var o={p:0,c:0,f:0};allItems(d).forEach(function(m){o.p+=m.p||0;o.c+=m.c||0;o.f+=m.f||0;});return o;}
+  function daySugar(d){return allItems(d).reduce(function(a,m){return a+(m.sugar||0);},0);}
+
+  /* ---- food database + recipes ---- */
+  var FOODS=[
+    {n:"Oatmeal with milk",kcal:220,p:8,c:38,f:4,sugar:8},
+    {n:"Greek yogurt (plain)",kcal:120,p:17,c:7,f:3,sugar:6},
+    {n:"Banana",kcal:105,p:1,c:27,f:0,sugar:14},
+    {n:"Apple",kcal:95,p:0,c:25,f:0,sugar:19},
+    {n:"Two boiled eggs",kcal:155,p:13,c:1,f:11,sugar:0},
+    {n:"Avocado toast",kcal:290,p:8,c:30,f:16,sugar:3},
+    {n:"Grilled chicken breast",kcal:230,p:43,c:0,f:5,sugar:0},
+    {n:"Paneer (100g)",kcal:265,p:18,c:4,f:20,sugar:2},
+    {n:"Tofu (100g)",kcal:145,p:16,c:3,f:9,sugar:1},
+    {n:"Dal (1 bowl)",kcal:200,p:12,c:28,f:4,sugar:3},
+    {n:"Brown rice (1 cup)",kcal:215,p:5,c:45,f:2,sugar:0},
+    {n:"Roti / chapati",kcal:120,p:3,c:20,f:3,sugar:1},
+    {n:"Mixed salad",kcal:90,p:3,c:12,f:4,sugar:5},
+    {n:"Chickpea curry",kcal:310,p:14,c:42,f:9,sugar:7},
+    {n:"Salmon fillet",kcal:280,p:34,c:0,f:16,sugar:0},
+    {n:"Peanut butter (2 tbsp)",kcal:190,p:8,c:7,f:16,sugar:3},
+    {n:"Almonds (handful)",kcal:165,p:6,c:6,f:14,sugar:1},
+    {n:"Protein shake",kcal:160,p:27,c:6,f:3,sugar:4},
+    {n:"Cottage cheese (1 cup)",kcal:180,p:25,c:8,f:5,sugar:7},
+    {n:"Sweet potato (baked)",kcal:180,p:4,c:41,f:0,sugar:9},
+    {n:"Quinoa (1 cup)",kcal:220,p:8,c:39,f:4,sugar:2},
+    {n:"Green smoothie",kcal:210,p:6,c:38,f:4,sugar:22},
+    {n:"Dark chocolate (2 sq)",kcal:110,p:1,c:12,f:7,sugar:8},
+    {n:"Idli (2 pcs)",kcal:140,p:5,c:28,f:1,sugar:1}
+  ];
+  var RECIPES=[
+    {id:"r1",n:"Greek Yogurt & Berry Bowl",tag:"High-protein breakfast",diet:"veg",goal:["lose","maintain"],slot:"breakfast",kcal:320,p:24,c:38,f:7,sugar:17,mins:5,
+      ing:["1 cup Greek yogurt","½ cup mixed berries","1 tbsp honey","2 tbsp granola","1 tsp chia seeds"],
+      steps:["Spoon the yogurt into a bowl.","Top with berries and granola.","Drizzle honey and sprinkle chia seeds.","Serve chilled."]},
+    {id:"r2",n:"Paneer & Veg Stir-Fry",tag:"Lean dinner · low sugar",diet:"veg",goal:["lose","maintain","gain"],slot:"dinner",kcal:480,p:28,c:30,f:26,sugar:6,mins:20,
+      ing:["150g paneer, cubed","2 cups mixed vegetables","1 tbsp olive oil","Garlic, ginger, soy sauce","Chilli flakes to taste"],
+      steps:["Heat oil, sauté garlic and ginger.","Add paneer, brown lightly.","Toss in vegetables, stir-fry 5–6 min.","Season with soy and chilli; serve hot."]},
+    {id:"r3",n:"Chickpea Salad Wrap",tag:"Balanced lunch",diet:"veg",goal:["lose","maintain"],slot:"lunch",kcal:430,p:18,c:52,f:15,sugar:6,mins:10,
+      ing:["1 cup chickpeas","1 whole-wheat wrap","Lettuce, tomato, cucumber","2 tbsp hummus","Lemon juice, salt, pepper"],
+      steps:["Mash chickpeas lightly with lemon and spices.","Spread hummus on the wrap.","Add chickpeas and chopped veg.","Roll tightly and slice."]},
+    {id:"r4",n:"Egg & Avocado Toast",tag:"High-protein breakfast",diet:"nonveg",goal:["lose","maintain","gain"],slot:"breakfast",kcal:360,p:18,c:30,f:20,sugar:3,mins:8,
+      ing:["2 eggs","1 slice whole-grain bread","½ avocado","Chilli flakes, salt","Squeeze of lemon"],
+      steps:["Toast the bread.","Mash avocado with lemon and salt; spread.","Fry or poach the eggs.","Place eggs on toast, add chilli flakes."]},
+    {id:"r5",n:"Grilled Chicken & Greens",tag:"Lean dinner",diet:"nonveg",goal:["lose","maintain","gain"],slot:"dinner",kcal:470,p:44,c:18,f:24,sugar:5,mins:20,
+      ing:["1 chicken breast","3 cups leafy greens","1 tbsp olive oil","Lemon, garlic, herbs","Cherry tomatoes"],
+      steps:["Season and grill the chicken 6–7 min per side.","Toss greens with oil, lemon and garlic.","Slice chicken over the salad.","Add tomatoes and serve."]},
+    {id:"r6",n:"Tuna Quinoa Bowl",tag:"Balanced lunch",diet:"nonveg",goal:["lose","maintain"],slot:"lunch",kcal:440,p:34,c:44,f:12,sugar:4,mins:15,
+      ing:["1 cup cooked quinoa","1 can tuna","Cucumber, corn, spinach","1 tbsp olive oil","Lemon and pepper"],
+      steps:["Add quinoa to a bowl.","Flake tuna on top.","Add chopped veg.","Dress with oil, lemon and pepper."]},
+    {id:"r7",n:"Tofu Scramble & Toast",tag:"High-protein breakfast",diet:"vegan",goal:["lose","maintain","gain"],slot:"breakfast",kcal:330,p:20,c:30,f:14,sugar:4,mins:12,
+      ing:["150g firm tofu","1 slice bread","Turmeric, black salt","Onion, tomato, spinach","1 tsp oil"],
+      steps:["Crumble tofu; sauté onion and tomato.","Add tofu, turmeric and black salt.","Stir in spinach until wilted.","Serve with toast."]},
+    {id:"r8",n:"Lentil & Veg Curry",tag:"Lean dinner",diet:"vegan",goal:["lose","maintain","gain"],slot:"dinner",kcal:450,p:22,c:58,f:12,sugar:7,mins:25,
+      ing:["1 cup red lentils","Mixed vegetables","Onion, garlic, ginger","Curry spices","Coconut milk (splash)"],
+      steps:["Sauté aromatics and spices.","Add lentils and water; simmer 15 min.","Add vegetables and coconut milk.","Cook until tender; serve with rice."]},
+    {id:"r9",n:"Hummus & Falafel Bowl",tag:"Balanced lunch",diet:"vegan",goal:["lose","maintain"],slot:"lunch",kcal:460,p:18,c:54,f:18,sugar:6,mins:15,
+      ing:["4 falafel","3 tbsp hummus","1 cup salad","½ cup couscous","Tahini drizzle"],
+      steps:["Add couscous and salad to a bowl.","Place falafel and a scoop of hummus.","Drizzle tahini over the top.","Finish with lemon and herbs."]}
+  ];
+  var EXLIB=[{"cat":"Chest","name":"Pushups","muscle":"chest","equip":"body only","level":"beginner","how":"Lie on the floor face down and place your hands about 36 inches apart while holding your torso up at arms length. Next, lower yourself downward until your chest almost touches the floor as you inhale."},{"cat":"Chest","name":"Plyo Push-up","muscle":"chest","equip":"body only","level":"beginner","how":"Move into a prone position on the floor, supporting your weight on your hands and toes. Your arms should be fully extended with the hands around shoulder width. Keep your body straight throughout the movement. "},{"cat":"Chest","name":"Push-Up Wide","muscle":"chest","equip":"body only","level":"beginner","how":"With your hands wide apart, support your body on your toes and hands in a plank position. Your elbows should be extended and your body straight. Do not allow your hips to sag. This will be your starting positio"},{"cat":"Chest","name":"Dumbbell Flyes","muscle":"chest","equip":"dumbbell","level":"beginner","how":"Lie down on a flat bench with a dumbbell on each hand resting on top of your thighs. The palms of your hand will be facing each other. Then using your thighs to help raise the dumbbells, lift the dumbbells one "},{"cat":"Chest","name":"Dumbbell Bench Press","muscle":"chest","equip":"dumbbell","level":"beginner","how":"Lie down on a flat bench with a dumbbell in each hand resting on top of your thighs. The palms of your hands will be facing each other. Then, using your thighs to help raise the dumbbells up, lift the dumbbells"},{"cat":"Chest","name":"Decline Dumbbell Flyes","muscle":"chest","equip":"dumbbell","level":"beginner","how":"Secure your legs at the end of the decline bench and lie down with a dumbbell on each hand on top of your thighs. The palms of your hand will be facing each other. Once you are laying down, move the dumbbells i"},{"cat":"Back","name":"Chin-Up","muscle":"lats","equip":"body only","level":"beginner","how":"Grab the pull-up bar with the palms facing your torso and a grip closer than the shoulder width. As you have both arms extended in front of you holding the bar at the chosen grip width, keep your torso as strai"},{"cat":"Back","name":"Pullups","muscle":"lats","equip":"body only","level":"beginner","how":"Grab the pull-up bar with the palms facing forward using the prescribed grip. Note on grips: For a wide grip, your hands need to be spaced out at a distance wider than your shoulder width. For a medium grip, yo"},{"cat":"Back","name":"Superman","muscle":"lower back","equip":"body only","level":"beginner","how":"To begin, lie straight and face down on the floor or exercise mat. Your arms should be fully extended in front of you. This is the starting position. Simultaneously raise your arms, legs, and chest off of the f"},{"cat":"Back","name":"Dumbbell Incline Row","muscle":"middle back","equip":"dumbbell","level":"beginner","how":"Using a neutral grip, lean into an incline bench. Take a dumbbell in each hand with a neutral grip, beginning with the arms straight. This will be your starting position."},{"cat":"Back","name":"One-Arm Dumbbell Row","muscle":"middle back","equip":"dumbbell","level":"beginner","how":"Choose a flat bench and place a dumbbell on each side of it. Place the right leg on top of the end of the bench, bend your torso forward from the waist until your upper body is parallel to the floor, and place "},{"cat":"Back","name":"Bent Over Two-Dumbbell Row","muscle":"middle back","equip":"dumbbell","level":"beginner","how":"With a dumbbell in each hand (palms facing your torso), bend your knees slightly and bring your torso forward by bending at the waist; as you bend make sure to keep your back straight until it is almost paralle"},{"cat":"Legs","name":"Inchworm","muscle":"hamstrings","equip":"body only","level":"beginner","how":"Stand with your feet close together. Keeping your legs straight, stretch down and put your hands on the floor directly in front of you. This will be your starting position. Begin by walking your hands forward s"},{"cat":"Legs","name":"Leg Lift","muscle":"glutes","equip":"body only","level":"beginner","how":"While standing up straight with both feet next to each other at around shoulder width, grab a sturdy surface such as the sides of a squat rack or the top of a chair to brace yourself and keep balance. With or w"},{"cat":"Legs","name":"Star Jump","muscle":"quadriceps","equip":"body only","level":"beginner","how":"Begin in a relaxed stance with your feet shoulder width apart and hold your arms close to the body. To initiate the move, squat down halfway and explode back up as high as possible. Fully extend your entire bod"},{"cat":"Legs","name":"Goblet Squat","muscle":"quadriceps","equip":"kettlebells","level":"beginner","how":"Stand holding a light kettlebell by the horns close to your chest. This will be your starting position. Squat down between your legs until your hamstrings are on your calves. Keep your chest and head up and you"},{"cat":"Legs","name":"Dumbbell Squat","muscle":"quadriceps","equip":"dumbbell","level":"beginner","how":"Stand up straight while holding a dumbbell on each hand (palms facing the side of your legs). Position your legs using a shoulder width medium stance with the toes slightly pointed out. Keep your head up at all"},{"cat":"Legs","name":"Vertical Swing","muscle":"hamstrings","equip":"dumbbell","level":"beginner","how":"Allow the dumbbell to hang at arms length between your legs, holding it with both hands. Keep your back straight and your head up. Swing the dumbbell between your legs, flexing at the hips and bending the knees"},{"cat":"Shoulders","name":"Reverse Flyes","muscle":"shoulders","equip":"dumbbell","level":"beginner","how":"To begin, lie down on an incline bench with the chest and stomach pressing against the incline. Have the dumbbells in each hand with the palms facing each other (neutral grip). Extend the arms in front of you s"},{"cat":"Shoulders","name":"Dumbbell Raise","muscle":"shoulders","equip":"dumbbell","level":"beginner","how":"Grab a dumbbell in each arm and stand up straight with your arms extended by your sides with a slight bend at the elbows and your back straight. This will be your starting position. Tip: The dumbbell should be "},{"cat":"Shoulders","name":"Power Partials","muscle":"shoulders","equip":"dumbbell","level":"beginner","how":"Stand up with your torso upright and a dumbbell on each hand being held at arms length. The elbows should be close to the torso. The palms of the hands should be facing your torso. Your feet should be about sho"},{"cat":"Shoulders","name":"Kettlebell Halo","muscle":"shoulders","equip":"kettlebells","level":"beginner","how":"Stand tall with your feet hip-width apart. Hold a kettlebell upside down by the horns, with the bell above your hands and close to your chest. Brace your abdominals and squeeze your glutes so your ribcage stays"},{"cat":"Shoulders","name":"Kettlebell Pirate Ships","muscle":"shoulders","equip":"kettlebells","level":"beginner","how":"With a wide stance, hold a kettlebell with both hands. Allow it to hang at waist level with your arms extended. This will be your starting position. Initiate the movement by turning to one side, swinging the ke"},{"cat":"Shoulders","name":"Car Drivers","muscle":"shoulders","equip":"barbell","level":"beginner","how":"While standing upright, hold a barbell plate in both hands at the 3 and 9 o'clock positions. Your palms should be facing each other and your arms should be extended straight out in front of you. This will be yo"},{"cat":"Arms","name":"Bench Dips","muscle":"triceps","equip":"body only","level":"beginner","how":"For this exercise you will need to place a bench behind your back. With the bench perpendicular to your body, and while looking away from it, hold on to the bench on its edge with the hands fully extended, sepa"},{"cat":"Arms","name":"Wrist Circles","muscle":"forearms","equip":"body only","level":"beginner","how":"Start by standing straight with your feet being shoulder width apart from each other. Elevate your arms to the side of you until they are fully extended and parallel to the floor at a height that is evenly alig"},{"cat":"Arms","name":"Body Tricep Press","muscle":"triceps","equip":"body only","level":"beginner","how":"Position a bar in a rack at chest height. Standing, take a shoulder width grip on the bar and step a yard or two back, feet together and arms extended so that you are leaning on the bar. This will be your start"},{"cat":"Arms","name":"Hammer Curls","muscle":"biceps","equip":"dumbbell","level":"beginner","how":"Stand up with your torso upright and a dumbbell on each hand being held at arms length. The elbows should be close to the torso. The palms of the hands should be facing your torso. This will be your starting po"},{"cat":"Arms","name":"Concentration Curls","muscle":"biceps","equip":"dumbbell","level":"beginner","how":"Sit down on a flat bench with one dumbbell in front of you between your legs. Your legs should be spread with your knees bent and feet on the floor. Use your right arm to pick the dumbbell up. Place the back of"},{"cat":"Arms","name":"Dumbbell Bicep Curl","muscle":"biceps","equip":"dumbbell","level":"beginner","how":"Stand up straight with a dumbbell in each hand at arm's length. Keep your elbows close to your torso and rotate the palms of your hands until they are facing forward. This will be your starting position. Now, k"},{"cat":"Core","name":"Plank","muscle":"abdominals","equip":"body only","level":"beginner","how":"Get into a prone position on the floor, supporting your weight on your toes and your forearms. Your arms are bent and directly below the shoulder. Keep your body straight at all times, and hold this position as"},{"cat":"Core","name":"Sit-Up","muscle":"abdominals","equip":"body only","level":"beginner","how":"Lie down on the floor placing your feet either under something that will not move or by having a partner hold them. Your legs should be bent at the knees. Place your hands behind your head and lock them togethe"},{"cat":"Core","name":"Cocoons","muscle":"abdominals","equip":"body only","level":"beginner","how":"Begin by lying on your back on the ground. Your legs should be straight and your arms extended behind your head. This will be your starting position. To perform the movement, tuck the knees toward your chest, r"},{"cat":"Core","name":"Spell Caster","muscle":"abdominals","equip":"dumbbell","level":"beginner","how":"Hold a dumbbell in each hand with a pronated grip. Your feet should be wide with your hips and knees extended. This will be your starting position. Begin the movement by pulling both of the dumbbells to one sid"},{"cat":"Core","name":"Dumbbell Side Bend","muscle":"abdominals","equip":"dumbbell","level":"beginner","how":"Stand up straight while holding a dumbbell on the left hand (palms facing the torso) as you have the right hand holding your waist. Your feet should be placed at shoulder width. This will be your starting posit"},{"cat":"Core","name":"Landmine 180's","muscle":"abdominals","equip":"barbell","level":"beginner","how":"Position a bar into a landmine or securely anchor it in a corner. Load the bar to an appropriate weight. Raise the bar from the floor, taking it to shoulder height with both hands with your arms extended in fro"},{"cat":"Cardio","name":"Recumbent Bike","muscle":"quadriceps","equip":"machine","level":"beginner","how":"To begin, seat yourself on the bike and adjust the seat to your height. Select the desired option from the menu. You may have to start pedaling to turn it on. You can use the manual setting, or you can select a"},{"cat":"Cardio","name":"Jogging, Treadmill","muscle":"quadriceps","equip":"machine","level":"beginner","how":"To begin, step onto the treadmill and select the desired option from the menu. Most treadmills have a manual setting, or you can select a program to run. Typically, you can enter your age and weight to estimate"},{"cat":"Cardio","name":"Running, Treadmill","muscle":"quadriceps","equip":"machine","level":"beginner","how":"To begin, step onto the treadmill and select the desired option from the menu. Most treadmills have a manual setting, or you can select a program to run. Typically, you can enter your age and weight to estimate"},{"cat":"Cardio","name":"Bicycling","muscle":"quadriceps","equip":"other","level":"beginner","how":"To begin, seat yourself on the bike and adjust the seat to your height."},{"cat":"Cardio","name":"Prowler Sprint","muscle":"hamstrings","equip":"other","level":"beginner","how":"Place your sled on an appropriate surface, loaded to a suitable weight. The sled should provide enough resistance to require effort, but not so heavy that you are significantly slowed down. You may use the upri"},{"cat":"Cardio","name":"Trail Running/Walking","muscle":"quadriceps","equip":"body only","level":"beginner","how":"Running or hiking on trails will get the blood pumping and heart beating almost immediately. Make sure you have good shoes. While you use the muscles in your calves and buttocks to pull yourself up a hill, the "},{"cat":"Stretch","name":"Inchworm","muscle":"hamstrings","equip":"body only","level":"beginner","how":"Stand with your feet close together. Keeping your legs straight, stretch down and put your hands on the floor directly in front of you. This will be your starting position. Begin by walking your hands forward s"},{"cat":"Stretch","name":"Cat Stretch","muscle":"lower back","equip":"body only","level":"beginner","how":"Begin on your hands and knees. Your hands should be below your shoulders, knees below your hips. Round your spine toward the ceiling, tucking your chin, then slowly arch it the other way. Move gently and breathe."},{"cat":"Stretch","name":"Knee Circles","muscle":"calves","equip":"body only","level":"beginner","how":"Stand with your legs together and hands by your waist. Now move your knees in a circular motion as you breathe normally."},{"cat":"Stretch","name":"Pyramid","muscle":"lower back","equip":"exercise ball","level":"beginner","how":"Start off by rolling your torso forward onto the ball so your hips rest on top of the ball and become the highest point of your body. Rest your hands and feet on the floor. Your arms and legs can be slightly be"},{"cat":"Stretch","name":"Hug A Ball","muscle":"lower back","equip":"exercise ball","level":"beginner","how":"Seat yourself on the floor. Straddle an exercise ball between both legs and lower your hips down toward the floor."},{"cat":"Stretch","name":"Hamstring-SMR","muscle":"hamstrings","equip":"foam roll","level":"beginner","how":"In a seated position, extend your legs over a foam roll so that it is positioned on the back of the upper legs. Place your hands to the side or behind you to help support your weight. This will be your starting p"}];
   function streak(){var n=0,dd=new Date();var tk=todayKey();if(!(state.days[tk]&&state.days[tk].workoutMin>0))dd=addDays(dd,-1);for(;;){var e=state.days[key(dd)];if(e&&e.workoutMin>0){n++;dd=addDays(dd,-1);}else break;}return n;}
 
   /* ---- ring svg ---- */
@@ -433,11 +603,12 @@
     document.getElementById("streakN").textContent=streak();
     document.getElementById("weightN").textContent=d.weight?d.weight.toFixed(1):(state.profile.weightKg+"");
 
-    var wd=new Date().getDay(),rest=!(d.workoutMin>0)&&PLANCAT[wd]==="Recovery";
-    document.getElementById("wkCat").textContent=PLANCAT[wd]+" · today";
-    document.getElementById("wkName").textContent=d.workoutName||PLAN[wd];
-    var dur=[20,35,30,30,25,35,25][wd];
-    document.getElementById("wkMeta").innerHTML='<span>'+icon("clock")+dur+' min</span><span>'+icon("flame")+Math.round(dur*7)+' kcal</span><span>'+icon("bolt")+PLANCAT[wd]+'</span>';
+    var tt=targets();
+    document.getElementById("wkMin").textContent=d.workoutMin||0;
+    document.getElementById("wkGoalTxt").textContent="goal "+tt.move+" min";
+    document.getElementById("wkBar").style.width="0%";
+    setTimeout(function(){document.getElementById("wkBar").style.width=Math.min(100,(d.workoutMin||0)/tt.move*100)+"%";},60);
+    document.getElementById("wkMeta").innerHTML = (d.workoutMin>0)?('<span>'+icon("check")+(d.workoutName||"Workout")+' · '+Math.round((d.workoutMin||0)*6)+' kcal</span>'):('<span>'+icon("clock")+'No workout logged yet</span>');
 
     var eaten=dayKcal(d),m=dayMacros(d),tgp=Math.max(1,Math.round(state.profile.weightKg*1.6));
     document.getElementById("kcalEaten").textContent=eaten;
@@ -448,26 +619,103 @@
     var macs=[["Protein",m.p,tgp,"var(--accent)"],["Carbs",m.c,Math.round(t.kcal*0.45/4),"var(--info)"],["Fat",m.f,Math.round(t.kcal*0.3/9),"var(--warn)"]];
     document.getElementById("macros").innerHTML=macs.map(function(x){return '<div class="macro"><div class="mv">'+x[1]+'g</div><div class="mk">'+x[0]+'</div><div class="mt"><i style="width:'+Math.min(100,x[1]/x[2]*100)+'%;background:'+x[3]+'"></i></div></div>';}).join("");
   }
+  var exCat="Chest";
+  function cap(s){return s?s.charAt(0).toUpperCase()+s.slice(1):s;}
   function renderWorkouts(){
-    var feats=[["Full-Body Strength","32 min · 420 kcal","#2b3a12"],["Cardio Intervals","24 min · 300 kcal","#13303a"],["HIIT Burn","18 min · 260 kcal","#3a2412"],["Yoga Flow","28 min · 150 kcal","#2a1c3a"]];
-    document.getElementById("wkFeatured").innerHTML=feats.map(function(f){return '<div class="fcard" style="background:'+f[2]+'"><div class="ft">'+f[0]+'</div><div class="fm">'+f[1]+'</div></div>';}).join("");
+    var d=today();
+    document.getElementById("wMinToday").textContent=d.workoutMin||0;
+    var chips=document.getElementById("exCatChips");chips.innerHTML="";
+    EXCATS.forEach(function(c){var b=document.createElement("button");b.className="chip"+(c===exCat?" on":"");b.textContent=c;b.onclick=function(){exCat=c;renderWorkouts();};chips.appendChild(b);});
+    var list=EXLIB.filter(function(e){return e.cat===exCat;});
+    document.getElementById("exList").innerHTML=list.map(function(e){return '<button class="rec" data-i="'+EXLIB.indexOf(e)+'" style="text-align:left;width:100%"><div class="rimg">'+icon("dumbbell")+'</div><div class="rt"><b>'+e.name+'</b><span>'+cap(e.muscle)+' · '+e.equip+' · '+e.level+'</span></div><div class="rk">'+icon("chevR")+'</div></button>';}).join("");
+    document.getElementById("exList").querySelectorAll(".rec").forEach(function(b){b.onclick=function(){openExercise(+b.dataset.i);};});
+    var h="",now=new Date(),any=false;
+    for(var i=0;i<7;i++){var dd=addDays(now,-i),e=state.days[key(dd)];if(e&&e.workoutMin>0){any=true;h+='<div class="lrow"><div class="li">'+icon("activity")+'</div><div class="lt"><b>'+(e.workoutName||"Workout")+'</b><span>'+dd.toLocaleDateString(undefined,{weekday:"short",month:"short",day:"numeric"})+'</span></div><div class="lv">'+e.workoutMin+' min</div></div>';}}
+    document.getElementById("wkHistory").innerHTML=any?h:'<div class="empty" style="padding:14px">No workouts logged yet. Tap “Log workout”.</div>';
   }
+  function openExercise(i){
+    var e=EXLIB[i];if(!e)return;
+    document.getElementById("exT").textContent="Exercise";
+    document.getElementById("exBody").innerHTML=
+      '<div class="rtag">'+e.cat+' · '+e.level+'</div><div class="rhero">'+e.name+'</div>'
+      +'<div class="rmac"><div class="m"><div class="mv" style="font-size:14px;text-transform:capitalize">'+e.muscle+'</div><div class="mk">muscle</div></div><div class="m"><div class="mv" style="font-size:14px;text-transform:capitalize">'+e.equip+'</div><div class="mk">equipment</div></div></div>'
+      +'<span class="lbl">How to do it</span><p style="font-size:14px;line-height:1.6;margin-top:8px">'+e.how+'…</p>'
+      +'<button class="btn primary" id="exLog" style="margin-top:18px"><span class="ic">'+icon("plus")+'</span>Log a workout</button>';
+    document.getElementById("exBody").querySelector("#exLog").onclick=function(){hideSheet("exSheet");openWkSheet();};
+    showSheet("exSheet");
+  }
+  var wkMins=30, wkType="Strength";
+  function openWkSheet(){wkMins=30;wkType="Strength";renderWkSheet();showSheet("wkSheet");}
+  function renderWkSheet(){
+    var tc=document.getElementById("wkTypeChips");tc.innerHTML="";
+    WKTYPES.forEach(function(t){var b=document.createElement("button");b.className="chip"+(t===wkType?" on":"");b.textContent=t;b.onclick=function(){wkType=t;renderWkSheet();};tc.appendChild(b);});
+    document.getElementById("wkMinsVal").textContent=wkMins;
+  }
+  function macroCell(k,v,tg,col){return '<div class="macro"><div class="mv">'+v+'g</div><div class="mk">'+k+'</div><div class="mt"><i style="width:'+Math.min(100,tg?v/tg*100:0)+'%;background:'+col+'"></i></div></div>';}
   function renderNutrition(){
-    var t=targets(),d=today(),eaten=dayKcal(d);
-    document.getElementById("nKcal").textContent=eaten;document.getElementById("nTarget").textContent="of "+t.kcal+" kcal";
-    document.getElementById("nBar").style.width="0%";setTimeout(function(){document.getElementById("nBar").style.width=Math.min(100,eaten/t.kcal*100)+"%";},60);
-    var diet=state.profile.diet, goal=state.profile.goal;
-    var DB={
-      veg:[["Greek yogurt & berry bowl","High-protein breakfast","320 kcal"],["Paneer & veg stir-fry","Lean dinner, low sugar","480 kcal"],["Chickpea salad wrap","Balanced lunch","430 kcal"]],
-      nonveg:[["Egg & avocado toast","High-protein breakfast","360 kcal"],["Grilled chicken & greens","Lean dinner","470 kcal"],["Tuna quinoa bowl","Balanced lunch","440 kcal"]],
-      vegan:[["Tofu scramble & toast","High-protein breakfast","330 kcal"],["Lentil & veg curry","Lean dinner","450 kcal"],["Hummus & falafel bowl","Balanced lunch","460 kcal"]]
-    };
-    var recs=DB[diet]||DB.veg;
-    var tip = goal==="lose"? "Tip: swap sugary drinks for water to cut ~200 kcal a day." : goal==="gain"? "Tip: add nuts or nut butter for easy extra calories." : "Tip: keep added sugar under ~25g a day.";
-    document.getElementById("mealRecs").innerHTML=
-      '<div class="card">'+recs.map(function(r,i){return '<div class="lrow"><div class="li">'+icon("fork")+'</div><div class="lt"><b>'+r[0]+'</b><span>'+r[1]+'</span></div><div class="lv">'+r[2]+'</div></div>';}).join("")+'</div>'
-      +'<div class="shellnote"><span class="ic">'+icon("bolt")+'</span>'+tip+'</div>';
+    var t=targets(),d=today(),eaten=dayKcal(d),m=dayMacros(d),sugar=daySugar(d);
+    document.getElementById("nutDate").textContent=new Date().toLocaleDateString(undefined,{month:"short",day:"numeric"});
+    var sugarTarget=state.profile.goal==="lose"?25:30;
+    var tgp=Math.max(1,Math.round(state.profile.weightKg*1.6)),tgc=Math.round(t.kcal*0.45/4),tgf=Math.round(t.kcal*0.3/9);
+    document.getElementById("nutSummary").innerHTML=
+      '<div class="rowb"><div><div class="num" style="font-size:30px;font-weight:800">'+eaten+'</div><div style="color:var(--muted);font-size:13px;font-weight:600">of '+t.kcal+' kcal · '+Math.max(0,t.kcal-eaten)+' left</div></div>'
+        +'<div style="text-align:right"><div class="num" style="font-size:20px;color:var(--accent-text)">'+m.p+'g</div><div style="color:var(--muted);font-size:11px;font-weight:700">PROTEIN</div></div></div>'
+      +'<div class="kbar"><i id="nBar" style="width:0%"></i></div>'
+      +'<div class="macros">'+macroCell("Protein",m.p,tgp,"var(--accent)")+macroCell("Carbs",m.c,tgc,"var(--info)")+macroCell("Fat",m.f,tgf,"var(--warn)")+'</div>'
+      +'<div class="srow"><span class="k">'+icon("drop")+'Water</span><div class="stepper"><button id="wMinus">'+icon("minus")+'</button><b class="num">'+(d.water||0)+'/'+t.water+'</b><button id="wPlus">'+icon("plus")+'</button></div></div>'
+      +'<div class="srow"><span class="k">'+icon("fire2")+'Sugar</span><span class="v" style="color:'+(sugar>sugarTarget?"var(--bad)":"var(--success)")+'">'+sugar+'g of ~'+sugarTarget+'g</span></div>';
+    setTimeout(function(){var b=document.getElementById("nBar");if(b)b.style.width=Math.min(100,eaten/t.kcal*100)+"%";},60);
+    document.getElementById("wPlus").onclick=function(){d.water=(d.water||0)+1;commit();renderNutrition();};
+    document.getElementById("wMinus").onclick=function(){d.water=Math.max(0,(d.water||0)-1);commit();renderNutrition();};
+    renderMealSlots(d);
+    renderRecs();
   }
+  function renderMealSlots(d){
+    var g=dayLog(d),host=document.getElementById("mealSlots");host.innerHTML="";
+    SLOTS.forEach(function(slot){
+      var items=g[slot]||[],kc=items.reduce(function(a,x){return a+(x.kcal||0);},0);
+      var el=document.createElement("div");el.className="slot";
+      el.innerHTML='<div class="sh"><b>'+SLOTLBL[slot]+'</b><span class="sk">'+kc+' kcal</span></div>'
+        +items.map(function(it,i){return '<div class="item"><span class="in">'+it.name+'</span><span class="ik">'+it.kcal+' kcal · P'+(it.p||0)+' F'+(it.f||0)+'</span><button class="rm" data-i="'+i+'">'+icon("x")+'</button></div>';}).join("")
+        +'<button class="add">'+icon("plus")+'Add food</button>';
+      el.querySelector(".add").onclick=function(){openAddFood(slot);};
+      el.querySelectorAll(".rm").forEach(function(btn){btn.onclick=function(){items.splice(+btn.dataset.i,1);commit();renderNutrition();};});
+      host.appendChild(el);
+    });
+  }
+  function renderRecs(){
+    var dietL={veg:"Veg",nonveg:"Non-veg",vegan:"Vegan"},goalL={lose:"Lose",maintain:"Maintain",gain:"Gain"};
+    document.getElementById("recLbl").textContent="Recommended · "+(dietL[state.profile.diet]||"Veg")+" · "+(goalL[state.profile.goal]||"Maintain");
+    var recs=RECIPES.filter(function(r){return r.diet===state.profile.diet&&r.goal.indexOf(state.profile.goal)>=0;});
+    if(recs.length<3)recs=RECIPES.filter(function(r){return r.diet===state.profile.diet;});
+    var host=document.getElementById("mealRecs");
+    host.innerHTML=recs.map(function(r){return '<button class="rec" data-id="'+r.id+'" style="text-align:left;width:100%"><div class="rimg">'+icon("fork")+'</div><div class="rt"><b>'+r.n+'</b><span>'+r.tag+' · '+r.mins+' min</span></div><div class="rk">'+r.kcal+'<br>kcal</div></button>';}).join("");
+    host.querySelectorAll(".rec").forEach(function(b){b.onclick=function(){openRecipe(b.dataset.id);};});
+  }
+
+  var addSlot="breakfast";
+  function openAddFood(slot){addSlot=slot;document.getElementById("foodSheetT").textContent="Add to "+SLOTLBL[slot];document.getElementById("foodSearch").value="";renderFoodList("");showSheet("foodSheet");}
+  function renderFoodList(q){
+    q=(q||"").toLowerCase();
+    var list=FOODS.filter(function(f){return f.n.toLowerCase().indexOf(q)>=0;});
+    var host=document.getElementById("foodList");
+    host.innerHTML=list.length?list.map(function(f){return '<div class="foodrow"><div><div class="fn">'+f.n+'</div><div class="fk">'+f.kcal+' kcal · P'+f.p+' · C'+f.c+' · F'+f.f+' · sugar '+f.sugar+'g</div></div><button class="fadd" data-i="'+FOODS.indexOf(f)+'">'+icon("plus")+'</button></div>';}).join(""):'<div class="foodrow"><div class="fk">No match — add it as a custom food below.</div></div>';
+    host.querySelectorAll(".fadd").forEach(function(b){b.onclick=function(){var f=FOODS[+b.dataset.i];addItem(addSlot,{name:f.n,kcal:f.kcal,p:f.p,c:f.c,f:f.f,sugar:f.sugar});toast(f.n+" added",true);};});
+  }
+  function addItem(slot,it){dayLog(today())[slot].push(it);commit();renderNutrition();}
+  function openRecipe(id){
+    var r=RECIPES.filter(function(x){return x.id===id;})[0];if(!r)return;
+    document.getElementById("recBody").innerHTML=
+      '<div class="rtag">'+r.tag+'</div><div class="rhero">'+r.n+'</div>'
+      +'<div class="rmac"><div class="m"><div class="mv num">'+r.kcal+'</div><div class="mk">kcal</div></div><div class="m"><div class="mv num">'+r.p+'g</div><div class="mk">protein</div></div><div class="m"><div class="mv num">'+r.c+'g</div><div class="mk">carbs</div></div><div class="m"><div class="mv num">'+r.f+'g</div><div class="mk">fat</div></div></div>'
+      +'<span class="lbl">Ingredients</span><ul class="ingl">'+r.ing.map(function(x){return '<li>'+x+'</li>';}).join("")+'</ul>'
+      +'<span class="lbl" style="display:block;margin-top:16px">Method</span><ol class="steps">'+r.steps.map(function(x){return '<li>'+x+'</li>';}).join("")+'</ol>'
+      +'<button class="btn primary" id="recAdd" style="margin-top:20px"><span class="ic">'+icon("plus")+'</span>Add to '+SLOTLBL[r.slot]+'</button>';
+    document.getElementById("recBody").querySelector("#recAdd").onclick=function(){addItem(r.slot,{name:r.n,kcal:r.kcal,p:r.p,c:r.c,f:r.f,sugar:r.sugar});hideSheet("recipeSheet");toast("Added to "+SLOTLBL[r.slot],true);};
+    showSheet("recipeSheet");
+  }
+  function showSheet(id){var s=document.getElementById(id);s.hidden=false;requestAnimationFrame(function(){s.classList.add("show");});}
+  function hideSheet(id){var s=document.getElementById(id);s.classList.remove("show");setTimeout(function(){s.hidden=true;},320);}
   function renderProgress(){
     var now=new Date(),el=document.getElementById("progChart");el.innerHTML="";
     var s=new Date();s.setDate(s.getDate()-((s.getDay()+6)%7));s.setHours(0,0,0,0);
@@ -510,8 +758,24 @@
   document.getElementById("avatarBtn").onclick=function(){go("profile");};
   document.getElementById("toProfile").onclick=function(){go("profile");};
   document.getElementById("addWater").onclick=function(){var d=today();d.water=(d.water||0)+1;commit();renderHome();toast("Water logged",true);};
-  document.getElementById("startWk").onclick=function(){var d=today();if(!d.workoutMin){d.workoutMin=[20,35,30,30,25,35,25][new Date().getDay()];d.workoutName=PLAN[new Date().getDay()];commit();renderHome();toast("Workout logged — nice!",true);}else toast("Already logged today");};
+  document.getElementById("logWkBtn").onclick=function(){openWkSheet();};
   document.getElementById("logMeal").onclick=function(){go("nutrition");};
+  document.getElementById("foodClose").onclick=function(){hideSheet("foodSheet");};
+  document.getElementById("recClose").onclick=function(){hideSheet("recipeSheet");};
+  document.getElementById("foodSearch").oninput=function(e){renderFoodList(e.target.value);};
+  document.getElementById("cfAdd").onclick=function(){
+    var n=document.getElementById("cfName").value.trim();if(!n){toast("Name the food first");return;}
+    var g=function(id){return Math.max(0,parseInt(document.getElementById(id).value,10)||0);};
+    addItem(addSlot,{name:n,kcal:g("cfKcal"),p:g("cfP"),c:g("cfC"),f:g("cfF"),sugar:g("cfSugar")});
+    ["cfName","cfKcal","cfP","cfC","cfF","cfSugar"].forEach(function(id){document.getElementById(id).value="";});
+    toast(n+" added",true);
+  };
+  document.getElementById("logWkBtn2").onclick=function(){openWkSheet();};
+  document.getElementById("wkClose").onclick=function(){hideSheet("wkSheet");};
+  document.getElementById("exClose").onclick=function(){hideSheet("exSheet");};
+  document.getElementById("wkPlus").onclick=function(){wkMins+=5;document.getElementById("wkMinsVal").textContent=wkMins;};
+  document.getElementById("wkMinus").onclick=function(){wkMins=Math.max(5,wkMins-5);document.getElementById("wkMinsVal").textContent=wkMins;};
+  document.getElementById("wkSave").onclick=function(){var d=today();d.workoutMin=(d.workoutMin||0)+wkMins;d.workoutName=wkType;commit();hideSheet("wkSheet");toast(wkMins+" min logged",true);if(!document.getElementById("s-home").hidden)renderHome();if(!document.getElementById("s-workouts").hidden)renderWorkouts();};
 
   // profile edits
   function bindSeg(id,fn){document.querySelectorAll("#"+id+" button").forEach(function(b){b.onclick=function(){fn(b.dataset.v);};});}
