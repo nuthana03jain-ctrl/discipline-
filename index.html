@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Volt Fitness</title>
+<title>Discipline</title>
 <meta name="description" content="A private, full fitness tracker — workouts, nutrition with food recommendations, and progress.">
 <meta name="theme-color" content="#f7f8f5" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0b0d0c" media="(prefers-color-scheme: dark)">
@@ -11,7 +11,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Volt">
+<meta name="apple-mobile-web-app-title" content="Discipline">
 <link rel="apple-touch-icon" href="icon-180.png">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap">
@@ -99,7 +99,9 @@
   .waterbtn .ic{width:13px;height:13px}
 
   /* stat pills */
-  .pills{display:flex;gap:12px}
+  .pills{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .pill2 .pic.heartic{background:color-mix(in srgb,var(--bad) 16%,transparent)}
+  .pill2 .pic.heartic .ic{color:var(--bad);fill:var(--bad)}
   .pill2{flex:1;min-width:0;border-radius:var(--r-lg);padding:15px;display:flex;align-items:center;gap:12px;border:1px solid transparent}
   .pill2.lime{background:var(--accent);color:var(--accent-ink)}
   .pill2.plain{background:var(--surface);border-color:var(--line);color:var(--ink)}
@@ -196,6 +198,13 @@
   .banner{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--accent-soft);border-radius:var(--r-md);padding:12px 14px;font-size:13px;font-weight:600}
   .banner button{border:none;background:transparent;color:var(--accent-text);font-weight:800;font-size:13px}
 
+  /* home workout entries */
+  #wkEntries .item{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 0;border-top:1px solid var(--line);margin-top:4px}
+  #wkEntries .item .in{font-size:14px;font-weight:600;flex:1;min-width:0}
+  #wkEntries .item .ik{font-size:13px;color:var(--muted);font-weight:600}
+  #wkEntries .item .rm{border:none;background:transparent;color:var(--faint);padding:2px;display:grid;place-items:center}
+  #wkEntries .item .rm .ic{width:17px;height:17px}
+
   /* progress */
   .pgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
   .pgcell{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:15px;box-shadow:var(--shadow-sm)}
@@ -274,7 +283,7 @@
 </head>
 <body>
 
-<div id="splash"><div class="mk" data-ic="bolt"></div><div class="nm">Volt Fitness</div><div class="tg">Train · Eat · Progress</div></div>
+<div id="splash"><div class="mk" data-ic="bolt"></div><div class="nm">Discipline</div><div class="tg">Train · Eat · Progress</div></div>
 
 <div class="app">
   <header>
@@ -290,30 +299,26 @@
       <div class="banner" id="demoBanner" hidden><span>Demo data — set up your profile to make it yours.</span><button id="toProfile">Set up</button></div>
 
       <div class="card sec">
-        <div class="rowb"><span class="lbl">Today's rings</span><span class="lbl" id="ringDate"></span></div>
-        <div class="rings" id="rings"></div>
-        <div style="text-align:center"><button class="waterbtn" id="addWater"><span class="ic" data-ic="plus"></span>Add a glass of water</button></div>
-      </div>
-
-      <div class="pills">
-        <div class="pill2 heart"><div class="pic" data-ic="heart"></div><div><div class="pn num" id="streakN">0</div><div class="pl">Day streak</div></div></div>
-        <button class="pill2 plain" id="weightPill" style="text-align:left"><div class="pic" data-ic="scale"></div><div><div class="pn num" id="weightN">—</div><div class="pl">Weight · tap to log</div></div></button>
+        <div class="rowb"><span class="lbl">Nutrition today</span><span class="lbl" id="kcalLeft"></span></div>
+        <div><div class="rowb" style="margin-bottom:2px"><b class="num" id="kcalEaten" style="font-size:22px">0</b><span style="color:var(--muted);font-size:13px;font-weight:600" id="kcalTarget">of 0 kcal</span></div>
+        <div class="kbar"><i id="kcalBar" style="width:0%"></i></div></div>
+        <div class="macros" id="macros"></div>
+        <button class="btn primary" id="logMeal" style="margin-top:4px"><span class="ic" data-ic="plus"></span>Log a meal</button>
       </div>
 
       <div class="card wkcard sec">
         <div class="cat">Activity today</div>
         <div class="rowb"><div class="wt"><span id="wkMin" class="num">0</span> min</div><div class="lbl" id="wkGoalTxt"></div></div>
         <div class="kbar"><i id="wkBar" style="width:0%"></i></div>
-        <div class="meta" id="wkMeta"></div>
-        <button class="btn primary" id="logWkBtn"><span class="ic" data-ic="plus"></span>Log a workout</button>
+        <div id="wkEntries"></div>
+        <button class="btn ghost" id="logWkBtn"><span class="ic" data-ic="plus"></span>Log a workout</button>
       </div>
 
-      <div class="card sec">
-        <div class="rowb"><span class="lbl">Nutrition today</span><span class="lbl" id="kcalLeft"></span></div>
-        <div><div class="rowb" style="margin-bottom:2px"><b class="num" id="kcalEaten" style="font-size:20px">0</b><span style="color:var(--muted);font-size:13px;font-weight:600" id="kcalTarget">of 0 kcal</span></div>
-        <div class="kbar"><i id="kcalBar" style="width:0%"></i></div></div>
-        <div class="macros" id="macros"></div>
-        <button class="btn ghost" id="logMeal" style="margin-top:4px"><span class="ic" data-ic="plus"></span>Log a meal</button>
+      <div class="pills">
+        <div class="pill2 plain"><div class="pic heartic" data-ic="heart"></div><div><div class="pn num" id="streakN">0</div><div class="pl">Day streak</div></div></div>
+        <button class="pill2 plain" id="weightPill" style="text-align:left"><div class="pic" data-ic="scale"></div><div><div class="pn num" id="weightN">—</div><div class="pl">Weight · tap</div></div></button>
+        <button class="pill2 plain" id="waterPill" style="text-align:left"><div class="pic" data-ic="drop"></div><div><div class="pn num" id="waterN">0</div><div class="pl">Water · tap +1</div></div></button>
+        <button class="pill2 plain" id="stepsPill" style="text-align:left"><div class="pic" data-ic="steps"></div><div><div class="pn num" id="stepsN">0</div><div class="pl">Steps · tap</div></div></button>
       </div>
     </section>
 
@@ -524,7 +529,7 @@
 
   var PLAN=["Mobility","Full-Body Strength","Cardio","Upper Body","Core & Cardio","Lower Body","Yoga"];
   var WKTYPES=["Strength","Cardio","Yoga","Core","Walk","Full body","Other"];
-  var EXCATS=["Full Body","Cardio","Core","Chest & Arms","Legs","Back","Stretch"];
+  var EXCATS=["Full Body","Cardio","Core","Chest & Arms","Legs","Back","Yoga","Stretch"];
   function demoState(){
     var s=freshState(); s.profile.name="Alex";
     var t=new Date();
@@ -536,7 +541,7 @@
         lunch:[{name:"Chickpea salad wrap",kcal:430,p:18,c:52,f:15,sugar:6}],
         dinner:[], snack: i%3!==0?[{name:"Apple & peanut butter",kcal:180,p:5,c:22,f:9,sugar:14}]:[]
       };
-      s.days[key(d)]={workoutMin:mins,workoutName:rest?"Rest day":"Home workout",log:log,water:[4,5,6,5,7][i%5],weight:+(62-(i*0.03)).toFixed(1),steps:[6200,8400,5100,9300,7600,4200,8800][i%7]};
+      s.days[key(d)]={workouts: mins>0?[{type:"Home workout",min:mins}]:[], log:log,water:[4,5,6,5,7][i%5],weight:+(62-(i*0.03)).toFixed(1),steps:[6200,8400,5100,9300,7600,4200,8800][i%7]};
     }
     return s;
   }
@@ -628,8 +633,10 @@
       ing:["4 falafel","3 tbsp hummus","1 cup salad","½ cup couscous","Tahini drizzle"],
       steps:["Add couscous and salad to a bowl.","Place falafel and a scoop of hummus.","Drizzle tahini over the top.","Finish with lemon and herbs."]}
   ];
-  var EXLIB=[{"cat":"Full Body","name":"Inchworm","muscle":"hamstrings","level":"beginner","how":"Stand with your feet close together. Keeping your legs straight, stretch down and put your hands on the floor directly in front of you. This will be your starting position. Begin by walking your hands"},{"cat":"Full Body","name":"Bodyweight Squat","muscle":"quadriceps","level":"beginner","how":"Stand with your feet shoulder width apart. You can place your hands behind your head. This will be your starting position. Begin the movement by flexing your knees and hips, sitting back with your hip"},{"cat":"Full Body","name":"Step-up with Knee Raise","muscle":"glutes","level":"beginner","how":"Stand facing a box or bench of an appropriate height with your feet together. This will be your starting position. Begin the movement by stepping up, putting your left foot on the top of the bench. Ex"},{"cat":"Full Body","name":"Freehand Jump Squat","muscle":"quadriceps","level":"intermediate","how":"Cross your arms over your chest. With your head up and your back straight, position your feet at shoulder width."},{"cat":"Cardio","name":"Star Jump","muscle":"quadriceps","level":"beginner","how":"Begin in a relaxed stance with your feet shoulder width apart and hold your arms close to the body. To initiate the move, squat down halfway and explode back up as high as possible. Fully extend your "},{"cat":"Cardio","name":"Split Jump","muscle":"quadriceps","level":"beginner","how":"Assume a lunge stance position with one foot forward with the knee bent, and the rear knee nearly touching the ground. Ensure that the front knee is over the midline of the foot."},{"cat":"Cardio","name":"Rocket Jump","muscle":"quadriceps","level":"beginner","how":"Begin in a relaxed stance with your feet shoulder width apart and hold your arms close to the body. To initiate the move, squat down halfway and explode back up as high as possible."},{"cat":"Cardio","name":"Wind Sprints","muscle":"abdominals","level":"beginner","how":"Hang from a pull-up bar using a pronated grip. Your arms and legs should be extended. This will be your starting position. Begin by quickly raising one knee as high as you can. Do not swing your body "},{"cat":"Cardio","name":"Fast Skipping","muscle":"quadriceps","level":"beginner","how":"Start in a relaxed position with one leg slightly forward. This will be your starting position. Skip by executing a step-hop pattern of right-right-step to left-left-step, and so on, alternating back "},{"cat":"Cardio","name":"Scissors Jump","muscle":"quadriceps","level":"beginner","how":"Assume a lunge stance position with one foot forward with the knee bent, and the rear knee nearly touching the ground. Ensure that the front knee is over the midline of the foot. Extending through bot"},{"cat":"Core","name":"Plank","muscle":"abdominals","level":"beginner","how":"Get into a prone position on the floor, supporting your weight on your toes and your forearms. Your arms are bent and directly below the shoulder. Keep your body straight at all times, and hold this p"},{"cat":"Core","name":"Sit-Up","muscle":"abdominals","level":"beginner","how":"Lie down on the floor placing your feet either under something that will not move or by having a partner hold them. Your legs should be bent at the knees. Place your hands behind your head and lock th"},{"cat":"Core","name":"Cocoons","muscle":"abdominals","level":"beginner","how":"Begin by lying on your back on the ground. Your legs should be straight and your arms extended behind your head. This will be your starting position. To perform the movement, tuck the knees toward you"},{"cat":"Core","name":"Air Bike","muscle":"abdominals","level":"beginner","how":"Lie flat on the floor with your lower back pressed to the ground. For this exercise, you will need to put your hands beside your head. Be careful however to not strain with the neck as you perform it."},{"cat":"Core","name":"Butt-Ups","muscle":"abdominals","level":"beginner","how":"Begin a pushup position but with your elbows on the ground and resting on your forearms. Your arms should be bent at a 90 degree angle. Arch your back slightly out rather than keeping your back comple"},{"cat":"Core","name":"Crunches","muscle":"abdominals","level":"beginner","how":"Lie flat on your back with your feet flat on the ground, or resting on a bench with your knees bent at a 90 degree angle. If you are resting your feet on a bench, place them three to four inches apart"},{"cat":"Chest & Arms","name":"Pushups","muscle":"chest","level":"beginner","how":"Lie on the floor face down and place your hands about 36 inches apart while holding your torso up at arms length. Next, lower yourself downward until your chest almost touches the floor as you inhale."},{"cat":"Chest & Arms","name":"Bench Dips","muscle":"triceps","level":"beginner","how":"For this exercise you will need to place a bench behind your back. With the bench perpendicular to your body, and while looking away from it, hold on to the bench on its edge with the hands fully exte"},{"cat":"Chest & Arms","name":"Plyo Push-up","muscle":"chest","level":"beginner","how":"Move into a prone position on the floor, supporting your weight on your hands and toes. Your arms should be fully extended with the hands around shoulder width. Keep your body straight throughout the "},{"cat":"Chest & Arms","name":"Push-Up Wide","muscle":"chest","level":"beginner","how":"With your hands wide apart, support your body on your toes and hands in a plank position. Your elbows should be extended and your body straight. Do not allow your hips to sag. This will be your starti"},{"cat":"Chest & Arms","name":"Incline Push-Up","muscle":"chest","level":"beginner","how":"Stand facing bench or sturdy elevated platform. Place hands on edge of bench or platform, slightly wider than shoulder width. Position forefoot back from bench or platform with arms and body straight."},{"cat":"Chest & Arms","name":"Isometric Wipers","muscle":"chest","level":"beginner","how":"Assume a push-up position, supporting your weight on your hands and toes while keeping your body straight. Your hands should be just outside of shoulder width. This will be your starting position. Beg"},{"cat":"Legs","name":"Leg Lift","muscle":"glutes","level":"beginner","how":"While standing up straight with both feet next to each other at around shoulder width, grab a sturdy surface such as the sides of a squat rack or the top of a chair to brace yourself and keep balance."},{"cat":"Legs","name":"Knee Circles","muscle":"calves","level":"beginner","how":"Stand with your legs together and hands by your waist. Now move your knees in a circular motion as you breathe normally."},{"cat":"Legs","name":"Flutter Kicks","muscle":"glutes","level":"beginner","how":"On a flat bench lie facedown with the hips on the edge of the bench, the legs straight with toes high off the floor and with the arms on top of the bench holding on to the front edge. Squeeze your glu"},{"cat":"Legs","name":"Glute Kickback","muscle":"glutes","level":"beginner","how":"Kneel on the floor or an exercise mat and bend at the waist with your arms extended in front of you (perpendicular to the torso) in order to get into a kneeling push-up position but with the arms spac"},{"cat":"Legs","name":"Knee Tuck Jump","muscle":"hamstrings","level":"beginner","how":"Begin in a comfortable standing position with your knees slightly bent. Hold your hands in front of you, palms down with your fingertips together at chest height. This will be your starting position. "},{"cat":"Legs","name":"90/90 Hamstring","muscle":"hamstrings","level":"beginner","how":"Lie on your back, with one leg extended straight out. With the other leg, bend the hip and knee to 90 degrees. You may brace your leg with your hands if necessary. This will be your starting position."},{"cat":"Back","name":"Chin-Up","muscle":"lats","level":"beginner","how":"Grab the pull-up bar with the palms facing your torso and a grip closer than the shoulder width. As you have both arms extended in front of you holding the bar at the chosen grip width, keep your tors"},{"cat":"Back","name":"Pullups","muscle":"lats","level":"beginner","how":"Grab the pull-up bar with the palms facing forward using the prescribed grip. Note on grips: For a wide grip, your hands need to be spaced out at a distance wider than your shoulder width. For a mediu"},{"cat":"Back","name":"Superman","muscle":"lower back","level":"beginner","how":"To begin, lie straight and face down on the floor or exercise mat. Your arms should be fully extended in front of you. This is the starting position. Simultaneously raise your arms, legs, and chest of"},{"cat":"Back","name":"V-Bar Pullup","muscle":"lats","level":"beginner","how":"Start by placing the middle of the V-bar in the middle of the pull-up bar (assuming that the pull-up station you are using does not have neutral grip handles). The V-Bar handles will be facing down so"},{"cat":"Back","name":"Wide-Grip Rear Pull-Up","muscle":"lats","level":"intermediate","how":"Grab the pull-up bar with the palms facing forward using a wide grip. As you have both arms extended in front of you holding the bar, bring your torso forward and head so that there is an imaginary li"},{"cat":"Back","name":"Hyperextensions With No Hyperextension Bench","muscle":"lower back","level":"intermediate","how":"With someone holding down your legs, slide yourself down to the edge a flat bench until your hips hang off the end of the bench. Tip: Your entire upper body should be hanging down towards the floor. A"},{"cat":"Stretch","name":"Scissor Kick","muscle":"abdominals","level":"beginner","how":"To begin, lie down with your back pressed against the floor or on an exercise mat (optional). Your arms should be fully extended to the sides with your palms facing down. Note: The arms should be stat"},{"cat":"Stretch","name":"Toe Touchers","muscle":"abdominals","level":"beginner","how":"To begin, lie down on the floor or an exercise mat with your back pressed against the floor. Your arms should be lying across your sides with the palms facing down. Your legs should be touching each o"},{"cat":"Stretch","name":"Wrist Circles","muscle":"forearms","level":"beginner","how":"Start by standing straight with your feet being shoulder width apart from each other. Elevate your arms to the side of you until they are fully extended and parallel to the floor at a height that is e"},{"cat":"Stretch","name":"Stomach Vacuum","muscle":"abdominals","level":"beginner","how":"To begin, stand straight with your feet shoulder width apart from each other. Place your hands on your hips. This is the starting position. Now slowly inhale as much air as possible and then start to "},{"cat":"Stretch","name":"Lower Back Curl","muscle":"abdominals","level":"beginner","how":"Lie on your stomach with your arms out to your sides. This will be your starting position. Using your lower back muscles, extend your spine lifting your chest off of the ground. Do not use your arms t"},{"cat":"Stretch","name":"Rear Leg Raises","muscle":"quadriceps","level":"beginner","how":"Place yourself on your hands knees on an exercise mat. Your head should be looking forward and the bend of the knees should create a 90-degree angle between the hamstrings and the calves. This will be"}];
-  function streak(){var n=0,dd=new Date();var tk=todayKey();if(!(state.days[tk]&&state.days[tk].workoutMin>0))dd=addDays(dd,-1);for(;;){var e=state.days[key(dd)];if(e&&e.workoutMin>0){n++;dd=addDays(dd,-1);}else break;}return n;}
+  var EXLIB=[{"cat":"Full Body","name":"Inchworm","muscle":"hamstrings","level":"beginner","how":"Stand with your feet close together. Keeping your legs straight, stretch down and put your hands on the floor directly in front of you. This will be your starting position. Begin by walking your hands"},{"cat":"Full Body","name":"Bodyweight Squat","muscle":"quadriceps","level":"beginner","how":"Stand with your feet shoulder width apart. You can place your hands behind your head. This will be your starting position. Begin the movement by flexing your knees and hips, sitting back with your hip"},{"cat":"Full Body","name":"Step-up with Knee Raise","muscle":"glutes","level":"beginner","how":"Stand facing a box or bench of an appropriate height with your feet together. This will be your starting position. Begin the movement by stepping up, putting your left foot on the top of the bench. Ex"},{"cat":"Full Body","name":"Freehand Jump Squat","muscle":"quadriceps","level":"intermediate","how":"Cross your arms over your chest. With your head up and your back straight, position your feet at shoulder width."},{"cat":"Cardio","name":"Star Jump","muscle":"quadriceps","level":"beginner","how":"Begin in a relaxed stance with your feet shoulder width apart and hold your arms close to the body. To initiate the move, squat down halfway and explode back up as high as possible. Fully extend your "},{"cat":"Cardio","name":"Split Jump","muscle":"quadriceps","level":"beginner","how":"Assume a lunge stance position with one foot forward with the knee bent, and the rear knee nearly touching the ground. Ensure that the front knee is over the midline of the foot."},{"cat":"Cardio","name":"Rocket Jump","muscle":"quadriceps","level":"beginner","how":"Begin in a relaxed stance with your feet shoulder width apart and hold your arms close to the body. To initiate the move, squat down halfway and explode back up as high as possible."},{"cat":"Cardio","name":"Wind Sprints","muscle":"abdominals","level":"beginner","how":"Hang from a pull-up bar using a pronated grip. Your arms and legs should be extended. This will be your starting position. Begin by quickly raising one knee as high as you can. Do not swing your body "},{"cat":"Cardio","name":"Fast Skipping","muscle":"quadriceps","level":"beginner","how":"Start in a relaxed position with one leg slightly forward. This will be your starting position. Skip by executing a step-hop pattern of right-right-step to left-left-step, and so on, alternating back "},{"cat":"Cardio","name":"Scissors Jump","muscle":"quadriceps","level":"beginner","how":"Assume a lunge stance position with one foot forward with the knee bent, and the rear knee nearly touching the ground. Ensure that the front knee is over the midline of the foot. Extending through bot"},{"cat":"Core","name":"Plank","muscle":"abdominals","level":"beginner","how":"Get into a prone position on the floor, supporting your weight on your toes and your forearms. Your arms are bent and directly below the shoulder. Keep your body straight at all times, and hold this p"},{"cat":"Core","name":"Sit-Up","muscle":"abdominals","level":"beginner","how":"Lie down on the floor placing your feet either under something that will not move or by having a partner hold them. Your legs should be bent at the knees. Place your hands behind your head and lock th"},{"cat":"Core","name":"Cocoons","muscle":"abdominals","level":"beginner","how":"Begin by lying on your back on the ground. Your legs should be straight and your arms extended behind your head. This will be your starting position. To perform the movement, tuck the knees toward you"},{"cat":"Core","name":"Air Bike","muscle":"abdominals","level":"beginner","how":"Lie flat on the floor with your lower back pressed to the ground. For this exercise, you will need to put your hands beside your head. Be careful however to not strain with the neck as you perform it."},{"cat":"Core","name":"Butt-Ups","muscle":"abdominals","level":"beginner","how":"Begin a pushup position but with your elbows on the ground and resting on your forearms. Your arms should be bent at a 90 degree angle. Arch your back slightly out rather than keeping your back comple"},{"cat":"Core","name":"Crunches","muscle":"abdominals","level":"beginner","how":"Lie flat on your back with your feet flat on the ground, or resting on a bench with your knees bent at a 90 degree angle. If you are resting your feet on a bench, place them three to four inches apart"},{"cat":"Chest & Arms","name":"Pushups","muscle":"chest","level":"beginner","how":"Lie on the floor face down and place your hands about 36 inches apart while holding your torso up at arms length. Next, lower yourself downward until your chest almost touches the floor as you inhale."},{"cat":"Chest & Arms","name":"Bench Dips","muscle":"triceps","level":"beginner","how":"For this exercise you will need to place a bench behind your back. With the bench perpendicular to your body, and while looking away from it, hold on to the bench on its edge with the hands fully exte"},{"cat":"Chest & Arms","name":"Plyo Push-up","muscle":"chest","level":"beginner","how":"Move into a prone position on the floor, supporting your weight on your hands and toes. Your arms should be fully extended with the hands around shoulder width. Keep your body straight throughout the "},{"cat":"Chest & Arms","name":"Push-Up Wide","muscle":"chest","level":"beginner","how":"With your hands wide apart, support your body on your toes and hands in a plank position. Your elbows should be extended and your body straight. Do not allow your hips to sag. This will be your starti"},{"cat":"Chest & Arms","name":"Incline Push-Up","muscle":"chest","level":"beginner","how":"Stand facing bench or sturdy elevated platform. Place hands on edge of bench or platform, slightly wider than shoulder width. Position forefoot back from bench or platform with arms and body straight."},{"cat":"Chest & Arms","name":"Isometric Wipers","muscle":"chest","level":"beginner","how":"Assume a push-up position, supporting your weight on your hands and toes while keeping your body straight. Your hands should be just outside of shoulder width. This will be your starting position. Beg"},{"cat":"Legs","name":"Leg Lift","muscle":"glutes","level":"beginner","how":"While standing up straight with both feet next to each other at around shoulder width, grab a sturdy surface such as the sides of a squat rack or the top of a chair to brace yourself and keep balance."},{"cat":"Legs","name":"Knee Circles","muscle":"calves","level":"beginner","how":"Stand with your legs together and hands by your waist. Now move your knees in a circular motion as you breathe normally."},{"cat":"Legs","name":"Flutter Kicks","muscle":"glutes","level":"beginner","how":"On a flat bench lie facedown with the hips on the edge of the bench, the legs straight with toes high off the floor and with the arms on top of the bench holding on to the front edge. Squeeze your glu"},{"cat":"Legs","name":"Glute Kickback","muscle":"glutes","level":"beginner","how":"Kneel on the floor or an exercise mat and bend at the waist with your arms extended in front of you (perpendicular to the torso) in order to get into a kneeling push-up position but with the arms spac"},{"cat":"Legs","name":"Knee Tuck Jump","muscle":"hamstrings","level":"beginner","how":"Begin in a comfortable standing position with your knees slightly bent. Hold your hands in front of you, palms down with your fingertips together at chest height. This will be your starting position. "},{"cat":"Legs","name":"90/90 Hamstring","muscle":"hamstrings","level":"beginner","how":"Lie on your back, with one leg extended straight out. With the other leg, bend the hip and knee to 90 degrees. You may brace your leg with your hands if necessary. This will be your starting position."},{"cat":"Back","name":"Chin-Up","muscle":"lats","level":"beginner","how":"Grab the pull-up bar with the palms facing your torso and a grip closer than the shoulder width. As you have both arms extended in front of you holding the bar at the chosen grip width, keep your tors"},{"cat":"Back","name":"Pullups","muscle":"lats","level":"beginner","how":"Grab the pull-up bar with the palms facing forward using the prescribed grip. Note on grips: For a wide grip, your hands need to be spaced out at a distance wider than your shoulder width. For a mediu"},{"cat":"Back","name":"Superman","muscle":"lower back","level":"beginner","how":"To begin, lie straight and face down on the floor or exercise mat. Your arms should be fully extended in front of you. This is the starting position. Simultaneously raise your arms, legs, and chest of"},{"cat":"Back","name":"V-Bar Pullup","muscle":"lats","level":"beginner","how":"Start by placing the middle of the V-bar in the middle of the pull-up bar (assuming that the pull-up station you are using does not have neutral grip handles). The V-Bar handles will be facing down so"},{"cat":"Back","name":"Wide-Grip Rear Pull-Up","muscle":"lats","level":"intermediate","how":"Grab the pull-up bar with the palms facing forward using a wide grip. As you have both arms extended in front of you holding the bar, bring your torso forward and head so that there is an imaginary li"},{"cat":"Back","name":"Hyperextensions With No Hyperextension Bench","muscle":"lower back","level":"intermediate","how":"With someone holding down your legs, slide yourself down to the edge a flat bench until your hips hang off the end of the bench. Tip: Your entire upper body should be hanging down towards the floor. A"},{"cat":"Stretch","name":"Scissor Kick","muscle":"abdominals","level":"beginner","how":"To begin, lie down with your back pressed against the floor or on an exercise mat (optional). Your arms should be fully extended to the sides with your palms facing down. Note: The arms should be stat"},{"cat":"Stretch","name":"Toe Touchers","muscle":"abdominals","level":"beginner","how":"To begin, lie down on the floor or an exercise mat with your back pressed against the floor. Your arms should be lying across your sides with the palms facing down. Your legs should be touching each o"},{"cat":"Stretch","name":"Wrist Circles","muscle":"forearms","level":"beginner","how":"Start by standing straight with your feet being shoulder width apart from each other. Elevate your arms to the side of you until they are fully extended and parallel to the floor at a height that is e"},{"cat":"Stretch","name":"Stomach Vacuum","muscle":"abdominals","level":"beginner","how":"To begin, stand straight with your feet shoulder width apart from each other. Place your hands on your hips. This is the starting position. Now slowly inhale as much air as possible and then start to "},{"cat":"Stretch","name":"Lower Back Curl","muscle":"abdominals","level":"beginner","how":"Lie on your stomach with your arms out to your sides. This will be your starting position. Using your lower back muscles, extend your spine lifting your chest off of the ground. Do not use your arms t"},{"cat":"Stretch","name":"Rear Leg Raises","muscle":"quadriceps","level":"beginner","how":"Place yourself on your hands knees on an exercise mat. Your head should be looking forward and the bend of the knees should create a 90-degree angle between the hamstrings and the calves. This will be"},{"cat":"Yoga","name":"Child's Pose","muscle":"lower back","level":"beginner","how":"Kneel and sit back on your heels. Fold forward, lowering your chest toward your thighs and your forehead to the floor, arms extended ahead. Breathe slowly and let the back relax."},{"cat":"Yoga","name":"Downward Dog","muscle":"hamstrings","level":"beginner","how":"From hands and knees, tuck your toes and lift your hips up and back into an inverted V. Press your heels toward the floor and lengthen through the spine."},{"cat":"Yoga","name":"Cat-Cow","muscle":"lower back","level":"beginner","how":"On hands and knees, inhale and drop your belly while lifting your chest and gaze (cow). Exhale and round your spine, tucking your chin (cat). Flow with the breath."},{"cat":"Yoga","name":"Cobra Pose","muscle":"lower back","level":"beginner","how":"Lie face down with your hands under your shoulders. Press gently and lift your chest off the floor, keeping elbows soft and shoulders drawing down. Breathe steadily."},{"cat":"Yoga","name":"Warrior II","muscle":"quadriceps","level":"beginner","how":"Step your feet wide. Turn the front foot out and bend that knee over the ankle. Extend both arms parallel to the floor and gaze over the front hand."},{"cat":"Yoga","name":"Bridge Pose","muscle":"glutes","level":"beginner","how":"Lie on your back with knees bent and feet hip-width. Press into your feet and lift your hips, rolling the spine up one vertebra at a time. Hold and breathe."},{"cat":"Yoga","name":"Seated Forward Fold","muscle":"hamstrings","level":"beginner","how":"Sit with legs extended. Inhale to lengthen the spine; exhale and hinge from the hips reaching toward your feet. Keep the back long rather than rounded."}];
+  function dayWorkouts(d){if(!d.workouts){d.workouts=[];if(d.workoutMin>0){d.workouts.push({type:d.workoutName||"Workout",min:d.workoutMin});}}return d.workouts;}
+  function wkMin(d){return dayWorkouts(d).reduce(function(a,w){return a+(w.min||0);},0);}
+  function streak(){var n=0,dd=new Date();var tk=todayKey();if(!(state.days[tk]&&wkMin(state.days[tk])>0))dd=addDays(dd,-1);for(;;){var e=state.days[key(dd)];if(e&&wkMin(e)>0){n++;dd=addDays(dd,-1);}else break;}return n;}
 
   /* ---- ring svg ---- */
   function ringSVG(pct,color){var R=34,C=2*Math.PI*R,off=C*(1-Math.min(1,pct||0));
@@ -648,30 +655,21 @@
   }
   function renderHome(){
     document.getElementById("demoBanner").hidden=!isDemo;
-    document.getElementById("ringDate").textContent=new Date().toLocaleDateString(undefined,{month:"short",day:"numeric"});
     var t=targets(),d=today();
-    var rings=[
-      {id:"workout",k:"Workout",v:(d.workoutMin||0)+"/"+t.move,ic:"activity",col:"var(--accent)",pct:(d.workoutMin||0)/t.move},
-      {id:"food",k:"Food · kcal",v:dayKcal(d),ic:"flame",col:"var(--info)",pct:dayKcal(d)/t.kcal},
-      {id:"water",k:"Water · cups",v:(d.water||0)+"/"+t.water,ic:"drop",col:"var(--success)",pct:(d.water||0)/t.water},
-      {id:"steps",k:"Steps",v:fmtK(d.steps||0),ic:"steps",col:"var(--warn)",pct:(d.steps||0)/t.steps}
-    ];
-    document.getElementById("rings").innerHTML=rings.map(function(r){
-      return '<div class="ringw"><div class="rwrap" data-ring="'+r.id+'">'+ringSVG(r.pct,r.col)+'<div class="rc"><span class="ic" style="color:'+r.col+'">'+icon(r.ic)+'</span></div></div><div class="rv">'+r.v+'</div><div class="rk">'+r.k+'</div></div>';
-    }).join("");
-    setTimeout(function(){document.querySelectorAll("#rings circle[data-off]").forEach(function(c){c.setAttribute("stroke-dashoffset",c.getAttribute("data-off"));});},60);
-    var rh={workout:function(){openWkSheet();},food:function(){go("nutrition");},water:function(){var dd=today();dd.water=(dd.water||0)+1;commit();renderHome();toast("Water logged",true);},steps:function(){openStepsSheet();}};
-    document.querySelectorAll("#rings [data-ring]").forEach(function(el){el.onclick=rh[el.dataset.ring];});
 
     document.getElementById("streakN").textContent=streak();
-    document.getElementById("weightN").textContent=d.weight?d.weight.toFixed(1):(state.profile.weightKg+"");
+    document.getElementById("weightN").textContent=d.weight?(+d.weight).toFixed(1):(state.profile.weightKg+"");
+    document.getElementById("waterN").textContent=(d.water||0)+"/"+t.water;
+    document.getElementById("stepsN").textContent=fmtK(d.steps||0);
 
-    var tt=targets();
-    document.getElementById("wkMin").textContent=d.workoutMin||0;
-    document.getElementById("wkGoalTxt").textContent="goal "+tt.move+" min";
+    var mins=wkMin(d);
+    document.getElementById("wkMin").textContent=mins;
+    document.getElementById("wkGoalTxt").textContent="goal "+t.move+" min";
     document.getElementById("wkBar").style.width="0%";
-    setTimeout(function(){document.getElementById("wkBar").style.width=Math.min(100,(d.workoutMin||0)/tt.move*100)+"%";},60);
-    document.getElementById("wkMeta").innerHTML = (d.workoutMin>0)?('<span>'+icon("check")+(d.workoutName||"Workout")+' · '+Math.round((d.workoutMin||0)*6)+' kcal</span>'):('<span>'+icon("clock")+'No workout logged yet</span>');
+    setTimeout(function(){document.getElementById("wkBar").style.width=Math.min(100,mins/t.move*100)+"%";},60);
+    var ws=dayWorkouts(d);
+    document.getElementById("wkEntries").innerHTML = ws.length? ws.map(function(w,i){return '<div class="item"><span class="in">'+w.type+'</span><span class="ik">'+w.min+' min</span><button class="rm" data-i="'+i+'">'+icon("x")+'</button></div>';}).join("") : '<div class="meta"><span>'+icon("clock")+'No workout logged yet</span></div>';
+    document.querySelectorAll("#wkEntries .rm").forEach(function(b){b.onclick=function(){dayWorkouts(today()).splice(+b.dataset.i,1);commit();renderHome();toast("Workout removed");};});
 
     var eaten=dayKcal(d),m=dayMacros(d),tgp=Math.max(1,Math.round(state.profile.weightKg*1.6));
     document.getElementById("kcalEaten").textContent=eaten;
@@ -686,25 +684,25 @@
   function cap(s){return s?s.charAt(0).toUpperCase()+s.slice(1):s;}
   function renderWorkouts(){
     var d=today();
-    document.getElementById("wMinToday").textContent=d.workoutMin||0;
+    document.getElementById("wMinToday").textContent=wkMin(d);
     var chips=document.getElementById("exCatChips");chips.innerHTML="";
     EXCATS.forEach(function(c){var b=document.createElement("button");b.className="chip"+(c===exCat?" on":"");b.textContent=c;b.onclick=function(){exCat=c;renderWorkouts();};chips.appendChild(b);});
     var list=EXLIB.filter(function(e){return e.cat===exCat;});
-    document.getElementById("exList").innerHTML=list.map(function(e){return '<button class="rec" data-i="'+EXLIB.indexOf(e)+'" style="text-align:left;width:100%"><div class="rimg">'+icon("dumbbell")+'</div><div class="rt"><b>'+e.name+'</b><span>'+cap(e.muscle)+' · '+e.equip+' · '+e.level+'</span></div><div class="rk">'+icon("chevR")+'</div></button>';}).join("");
+    document.getElementById("exList").innerHTML=list.map(function(e){return '<button class="rec" data-i="'+EXLIB.indexOf(e)+'" style="text-align:left;width:100%"><div class="rimg">'+icon("dumbbell")+'</div><div class="rt"><b>'+e.name+'</b><span>'+cap(e.muscle)+' · '+e.level+' · no equipment</span></div><div class="rk">'+icon("chevR")+'</div></button>';}).join("");
     document.getElementById("exList").querySelectorAll(".rec").forEach(function(b){b.onclick=function(){openExercise(+b.dataset.i);};});
     var h="",now=new Date(),any=false;
-    for(var i=0;i<7;i++){var dd=addDays(now,-i),e=state.days[key(dd)];if(e&&e.workoutMin>0){any=true;h+='<div class="lrow"><div class="li">'+icon("activity")+'</div><div class="lt"><b>'+(e.workoutName||"Workout")+'</b><span>'+dd.toLocaleDateString(undefined,{weekday:"short",month:"short",day:"numeric"})+'</span></div><div class="lv">'+e.workoutMin+' min</div></div>';}}
+    for(var i=0;i<7;i++){var dd=addDays(now,-i),e=state.days[key(dd)];if(e&&wkMin(e)>0){any=true;var nm=dayWorkouts(e).map(function(w){return w.type;}).join(", ");h+='<div class="lrow"><div class="li">'+icon("activity")+'</div><div class="lt"><b>'+nm+'</b><span>'+dd.toLocaleDateString(undefined,{weekday:"short",month:"short",day:"numeric"})+'</span></div><div class="lv">'+wkMin(e)+' min</div></div>';}}
     document.getElementById("wkHistory").innerHTML=any?h:'<div class="empty" style="padding:14px">No workouts logged yet. Tap “Log workout”.</div>';
   }
   function openExercise(i){
     var e=EXLIB[i];if(!e)return;
-    document.getElementById("exT").textContent="Exercise";
+    document.getElementById("exT").textContent=e.cat;
     document.getElementById("exBody").innerHTML=
       '<div class="rtag">'+e.cat+' · '+e.level+'</div><div class="rhero">'+e.name+'</div>'
-      +'<div class="rmac"><div class="m"><div class="mv" style="font-size:14px;text-transform:capitalize">'+e.muscle+'</div><div class="mk">muscle</div></div><div class="m"><div class="mv" style="font-size:14px;text-transform:capitalize">'+e.equip+'</div><div class="mk">equipment</div></div></div>'
+      +'<div class="rmac"><div class="m"><div class="mv" style="font-size:14px;text-transform:capitalize">'+e.muscle+'</div><div class="mk">target</div></div><div class="m"><div class="mv" style="font-size:14px;text-transform:capitalize">'+e.level+'</div><div class="mk">level</div></div></div>'
       +'<span class="lbl">How to do it</span><p style="font-size:14px;line-height:1.6;margin-top:8px">'+e.how+'…</p>'
       +'<button class="btn primary" id="exLog" style="margin-top:18px"><span class="ic">'+icon("plus")+'</span>Log a workout</button>';
-    document.getElementById("exBody").querySelector("#exLog").onclick=function(){hideSheet("exSheet");openWkSheet();};
+    document.getElementById("exBody").querySelector("#exLog").onclick=function(){hideSheet("exSheet");setTimeout(openWkSheet,340);};
     showSheet("exSheet");
   }
   var wkMins=30, wkType="Strength";
@@ -782,14 +780,14 @@
     document.getElementById("recBody").querySelector("#recAdd").onclick=function(){addItem(r.slot,{name:r.n,kcal:r.kcal,p:r.p,c:r.c,f:r.f,sugar:r.sugar});hideSheet("recipeSheet");toast("Added to "+SLOTLBL[r.slot],true);};
     showSheet("recipeSheet");
   }
-  function showSheet(id){var s=document.getElementById(id);s.hidden=false;requestAnimationFrame(function(){s.classList.add("show");});}
-  function hideSheet(id){var s=document.getElementById(id);s.classList.remove("show");setTimeout(function(){s.hidden=true;},320);}
+  function showSheet(id){var s=document.getElementById(id);s.hidden=false;requestAnimationFrame(function(){s.classList.add("show");});try{history.pushState({sheet:id},"");}catch(e){}}
+  function hideSheet(id){try{history.back();}catch(e){var s=document.getElementById(id);s.classList.remove("show");setTimeout(function(){s.hidden=true;},320);}}
   function pg(v,k){return '<div class="pgcell"><div class="pv num">'+v+'</div><div class="pk">'+k+'</div></div>';}
-  function bestStreak(){var best=0,run=0;for(var i=120;i>=0;i--){var e=state.days[key(addDays(new Date(),-i))];if(e&&e.workoutMin>0){run++;if(run>best)best=run;}else run=0;}return best;}
+  function bestStreak(){var best=0,run=0;for(var i=120;i>=0;i--){var e=state.days[key(addDays(new Date(),-i))];if(e&&wkMin(e)>0){run++;if(run>best)best=run;}else run=0;}return best;}
   var progView="minutes";
   function renderProgress(){
     var now=new Date(),cnt=0,tot=0;
-    for(var i=0;i<30;i++){var e=state.days[key(addDays(now,-i))];if(e&&e.workoutMin>0){cnt++;tot+=e.workoutMin;}}
+    for(var i=0;i<30;i++){var e=state.days[key(addDays(now,-i))];if(e&&wkMin(e)>0){cnt++;tot+=wkMin(e);}}
     var avg=cnt?Math.round(tot/cnt):0,cons=Math.round(cnt/30*100);
     document.getElementById("progStats").innerHTML=pg(streak()+"","Day streak")+pg(cnt+"","Workouts · 30d")+pg(avg+"m","Avg session")+pg(cons+"%","Consistency");
     renderProgSpark(progView);
@@ -800,7 +798,7 @@
     progView=view;
     [].forEach.call(document.querySelectorAll("#progChips .chip"),function(c){c.classList.toggle("on",c.dataset.v===view);});
     var svg=document.getElementById("progSpark"),lbl=document.getElementById("progChartLbl"),now=new Date(),W=300,H=110,pts=[],col,bars=null,lblT;
-    if(view==="minutes"){lblT="Workout minutes · last 14 days";col="var(--accent)";bars=[];for(var d=13;d>=0;d--){var e=state.days[key(addDays(now,-d))];bars.push(e?e.workoutMin||0:0);}}
+    if(view==="minutes"){lblT="Workout minutes · last 14 days";col="var(--accent)";bars=[];for(var d=13;d>=0;d--){var e=state.days[key(addDays(now,-d))];bars.push(e?wkMin(e):0);}}
     else if(view==="steps"){lblT="Steps · last 14 days";col="var(--warn)";bars=[];for(var d2=13;d2>=0;d2--){var e2=state.days[key(addDays(now,-d2))];bars.push(e2?e2.steps||0:0);}}
     else {lblT="Weight (kg) · last 30 days";col="var(--info)";for(var d3=29;d3>=0;d3--){var e3=state.days[key(addDays(now,-d3))];if(e3&&e3.weight)pts.push([29-d3,e3.weight]);}}
     lbl.textContent=lblT;
@@ -832,21 +830,30 @@
   function tcell(v,k){return '<div class="t"><div class="tv num">'+v+'</div><div class="tk">'+k+'</div></div>';}
   function seg(id,val){document.querySelectorAll("#"+id+" button").forEach(function(b){b.classList.toggle("on",b.dataset.v===val);});}
 
-  /* ---- nav ---- */
-  var screens=["home","workouts","nutrition","progress","profile"];
-  function go(name){
+  /* ---- nav + back-button history ---- */
+  var screens=["home","workouts","nutrition","progress","profile"],curScreen="home";
+  function applyScreen(name){
     screens.forEach(function(s){document.getElementById("s-"+s).hidden=(s!==name);});
     document.querySelectorAll(".tab").forEach(function(t){t.classList.toggle("active",t.dataset.screen===name);});
     window.scrollTo(0,0);
     if(name==="home")renderHome();if(name==="workouts")renderWorkouts();if(name==="nutrition")renderNutrition();if(name==="progress")renderProgress();if(name==="profile")renderProfile();
     document.querySelector("header").style.display = (name==="home")?"":"none";
+    curScreen=name;
   }
+  function go(name){ applyScreen(name); if(name!==curScreen){} try{history.pushState({screen:name},"");}catch(e){} }
+  function anySheet(){return document.querySelector(".sheet.show");}
+  window.addEventListener("popstate",function(e){
+    var s=anySheet();
+    if(s){s.classList.remove("show");setTimeout(function(){s.hidden=true;},320);return;}
+    applyScreen((e.state&&e.state.screen)||"home");
+  });
 
   /* ---- interactions ---- */
   document.querySelectorAll(".tab").forEach(function(t){t.onclick=function(){go(t.dataset.screen);};});
   document.getElementById("avatarBtn").onclick=function(){go("profile");};
   document.getElementById("toProfile").onclick=function(){go("profile");};
-  document.getElementById("addWater").onclick=function(){var d=today();d.water=(d.water||0)+1;commit();renderHome();toast("Water logged",true);};
+  document.getElementById("waterPill").onclick=function(){var d=today();d.water=(d.water||0)+1;commit();renderHome();toast("Water +1",true);};
+  document.getElementById("stepsPill").onclick=function(){openStepsSheet();};
   document.getElementById("logWkBtn").onclick=function(){openWkSheet();};
   document.getElementById("logMeal").onclick=function(){go("nutrition");};
   document.getElementById("foodClose").onclick=function(){hideSheet("foodSheet");};
@@ -864,7 +871,7 @@
   document.getElementById("exClose").onclick=function(){hideSheet("exSheet");};
   document.getElementById("wkPlus").onclick=function(){wkMins+=5;document.getElementById("wkMinsVal").textContent=wkMins;};
   document.getElementById("wkMinus").onclick=function(){wkMins=Math.max(5,wkMins-5);document.getElementById("wkMinsVal").textContent=wkMins;};
-  document.getElementById("wkSave").onclick=function(){var d=today();d.workoutMin=(d.workoutMin||0)+wkMins;d.workoutName=wkType;commit();hideSheet("wkSheet");toast(wkMins+" min logged",true);if(!document.getElementById("s-home").hidden)renderHome();if(!document.getElementById("s-workouts").hidden)renderWorkouts();};
+  document.getElementById("wkSave").onclick=function(){var d=today();dayWorkouts(d).push({type:wkType,min:wkMins});commit();toast(wkMins+" min logged",true);if(!document.getElementById("s-home").hidden)renderHome();if(!document.getElementById("s-workouts").hidden)renderWorkouts();history.back();};
   document.getElementById("weightPill").onclick=function(){openWeightSheet();};
   document.getElementById("weightClose").onclick=function(){hideSheet("weightSheet");};
   document.getElementById("wgPlus").onclick=function(){wgVal=Math.round((wgVal+0.1)*10)/10;document.getElementById("wgVal").textContent=wgVal.toFixed(1);};
@@ -898,7 +905,7 @@
   var toastTimer;function toast(msg,check){var el=document.getElementById("toast");el.innerHTML=(check?icon("check"):"")+"<span>"+msg+"</span>";el.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(function(){el.classList.remove("show");},1900);}
 
   /* ---- boot ---- */
-  paintIcons();load();applyTheme();renderHeader();go("home");
+  paintIcons();load();applyTheme();renderHeader();try{history.replaceState({screen:"home"},"");}catch(e){}applyScreen("home");
   (function(){var sp=document.getElementById("splash");if(!sp)return;setTimeout(function(){sp.classList.add("hide");setTimeout(function(){sp.hidden=true;},550);},1300);})();
 })();
 </script>

@@ -1,7 +1,7 @@
 {
-  "name": "Volt Fitness",
-  "short_name": "Volt",
-  "description": "A private, full fitness tracker — workouts, nutrition with food recommendations, and progress.",
+  "name": "Discipline",
+  "short_name": "Discipline",
+  "description": "A private fitness tracker — home workouts, nutrition with food recommendations, and progress.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
